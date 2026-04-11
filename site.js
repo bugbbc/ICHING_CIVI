@@ -11,6 +11,8 @@
   const submissionForms = Array.from(
     document.querySelectorAll(".js-submission-form"),
   );
+  const articleGrid = document.querySelector(".js-article-grid");
+  const articleStatus = document.querySelector("[data-article-status]");
   const articleTypeLabels = {
     zh: {
       placeholder: "请选择稿件类型",
@@ -43,6 +45,20 @@
       en: "If your email client does not open automatically, send your submission to htxia0413@gmail.com.",
     },
   };
+  const articleMessages = {
+    loading: {
+      zh: "正在从数据库读取文章列表……",
+      en: "Loading articles from the database...",
+    },
+    empty: {
+      zh: "数据库已连接，但暂时还没有已发布文章。",
+      en: "The database is connected, but no published articles are available yet.",
+    },
+    error: {
+      zh: "文章列表暂时无法读取，请稍后重试。",
+      en: "The article list is temporarily unavailable. Please try again later.",
+    },
+  };
 
   function updatePlaceholders(lang) {
     document
@@ -65,6 +81,208 @@
           option.textContent = articleTypeLabels[lang][key];
         }
       });
+  }
+
+  function appendLangSpans(parent, zh, en) {
+    const zhSpan = document.createElement("span");
+    zhSpan.className = "lang-zh";
+    zhSpan.textContent = zh;
+
+    const enSpan = document.createElement("span");
+    enSpan.className = "lang-en";
+    enSpan.textContent = en;
+
+    parent.append(zhSpan, enSpan);
+  }
+
+  function setArticleStatusMessage(message, isError) {
+    if (!articleStatus) {
+      return;
+    }
+
+    articleStatus.classList.toggle("is-error", Boolean(isError));
+    articleStatus.replaceChildren();
+    appendLangSpans(articleStatus, message.zh, message.en);
+  }
+
+  function formatArticleDate(value, locale) {
+    if (!value) {
+      return "";
+    }
+
+    const date = new Date(value);
+    if (Number.isNaN(date.getTime())) {
+      return "";
+    }
+
+    return new Intl.DateTimeFormat(locale, {
+      year: "numeric",
+      month: "long",
+      day: "numeric",
+    }).format(date);
+  }
+
+  function createPillLink(labelZh, labelEn, href) {
+    const element = href
+      ? document.createElement("a")
+      : document.createElement("span");
+    element.className = "pill-link";
+
+    if (href) {
+      element.href = href;
+      element.target = "_blank";
+      element.rel = "noreferrer";
+    } else {
+      element.classList.add("is-disabled");
+    }
+
+    appendLangSpans(element, labelZh, labelEn);
+    return element;
+  }
+
+  function createStateCard(titleZh, titleEn, copyZh, copyEn) {
+    const card = document.createElement("article");
+    card.className = "article-card article-empty-card";
+
+    const meta = document.createElement("span");
+    meta.className = "article-meta";
+    appendLangSpans(meta, "Publishing Queue", "Publishing Queue");
+
+    const title = document.createElement("h3");
+    appendLangSpans(title, titleZh, titleEn);
+
+    const copy = document.createElement("p");
+    appendLangSpans(copy, copyZh, copyEn);
+
+    const actions = document.createElement("div");
+    actions.className = "article-actions";
+    actions.append(
+      createPillLink("内容整理中", "Content in Preparation", ""),
+      createPillLink("目录稍后更新", "Index Updates Soon", ""),
+    );
+
+    card.append(meta, title, copy, actions);
+    return card;
+  }
+
+  function renderArticleCard(article) {
+    const card = document.createElement("article");
+    card.className = "article-card";
+
+    const categoryZh = article.categoryZh || article.categoryEn || "研究论文";
+    const categoryEn = article.categoryEn || article.categoryZh || "Article";
+    const titleZh = article.titleZh || article.titleEn || "未命名文章";
+    const titleEn = article.titleEn || article.titleZh || "Untitled Article";
+    const abstractZh = article.abstractZh || article.abstractEn || "";
+    const abstractEn = article.abstractEn || article.abstractZh || "";
+    const authorZh = article.authorZh || article.authorEn || "";
+    const authorEn = article.authorEn || article.authorZh || "";
+    const dateZh = formatArticleDate(article.publishedAt, "zh-CN");
+    const dateEn = formatArticleDate(article.publishedAt, "en-US");
+    const bylineZh = [authorZh, dateZh].filter(Boolean).join(" · ");
+    const bylineEn = [authorEn, dateEn].filter(Boolean).join(" · ");
+
+    const meta = document.createElement("span");
+    meta.className = "article-meta";
+    appendLangSpans(meta, categoryZh, categoryEn);
+
+    const title = document.createElement("h3");
+    appendLangSpans(title, titleZh, titleEn);
+
+    const byline = document.createElement("p");
+    byline.className = "article-byline";
+    appendLangSpans(byline, bylineZh, bylineEn);
+
+    const abstract = document.createElement("p");
+    appendLangSpans(abstract, abstractZh, abstractEn);
+
+    const actions = document.createElement("div");
+    actions.className = "article-actions";
+    actions.append(
+      createPillLink(
+        article.pdfUrl ? "查看 PDF" : "PDF 待上线",
+        article.pdfUrl ? "View PDF" : "PDF Coming Soon",
+        article.pdfUrl || "",
+      ),
+    );
+
+    if (article.doiUrl) {
+      actions.append(createPillLink("DOI 链接", "DOI Link", article.doiUrl));
+    } else if (article.issueLabelZh || article.issueLabelEn) {
+      actions.append(
+        createPillLink(
+          article.issueLabelZh || article.issueLabelEn,
+          article.issueLabelEn || article.issueLabelZh,
+          "",
+        ),
+      );
+    }
+
+    card.append(meta, title);
+
+    if (bylineZh || bylineEn) {
+      card.append(byline);
+    }
+
+    card.append(abstract, actions);
+    return card;
+  }
+
+  async function loadLatestArticles() {
+    if (!articleGrid || !articleStatus) {
+      return;
+    }
+
+    setArticleStatusMessage(articleMessages.loading, false);
+
+    try {
+      const response = await fetch("/api/articles?limit=12", {
+        headers: {
+          Accept: "application/json",
+        },
+      });
+
+      if (!response.ok) {
+        throw new Error(`Unexpected status ${response.status}`);
+      }
+
+      const payload = await response.json();
+      const articles = Array.isArray(payload.articles) ? payload.articles : [];
+
+      if (!articles.length) {
+        articleGrid.replaceChildren(
+          createStateCard(
+            "暂未发布正式文章",
+            "No Published Articles Yet",
+            "Cloudflare KV 已连接成功。等你写入第一批文章元数据后，这里会自动显示最新目录。",
+            "Cloudflare KV is connected. This section will populate automatically once you publish the first article records.",
+          ),
+        );
+        setArticleStatusMessage(articleMessages.empty, false);
+        return;
+      }
+
+      articleGrid.replaceChildren(
+        ...articles.map((article) => renderArticleCard(article)),
+      );
+      setArticleStatusMessage(
+        {
+          zh: `已从数据库载入 ${articles.length} 篇文章。`,
+          en: `Loaded ${articles.length} articles from the database.`,
+        },
+        false,
+      );
+    } catch (error) {
+      articleGrid.replaceChildren(
+        createStateCard(
+          "文章列表暂时不可用",
+          "Article List Temporarily Unavailable",
+          "数据库接口还没有部署完成，或当前请求失败。完成 Cloudflare 绑定后，这里会自动切换为真实文章列表。",
+          "The database API has not been deployed yet, or the current request failed. This section will switch to the live article list once Cloudflare binding is ready.",
+        ),
+      );
+      setArticleStatusMessage(articleMessages.error, true);
+    }
   }
 
   function setLanguage(lang) {
@@ -222,4 +440,5 @@
   }
 
   setLanguage(initialLang === "en" ? "en" : "zh");
+  loadLatestArticles();
 })();

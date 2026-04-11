@@ -653,6 +653,25 @@ svg {
   pointer-events: none;
 }
 
+.article-byline,
+.article-status {
+  margin: 0.72rem 0 0;
+  color: var(--muted);
+  line-height: 1.6;
+}
+
+.article-status {
+  margin: 0 0 1rem;
+}
+
+.article-status.is-error {
+  color: #9a3b2f;
+}
+
+.article-empty-card {
+  grid-column: 1 / -1;
+}
+
 .article-actions,
 .issue-actions,
 .footer-links {
@@ -671,6 +690,10 @@ svg {
   border: 1px solid rgba(22, 30, 36, 0.1);
   background: rgba(255, 251, 244, 0.88);
   color: var(--ink);
+}
+
+.pill-link.is-disabled {
+  opacity: 0.72;
 }
 
 .submission-panel {
