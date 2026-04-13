@@ -41,8 +41,8 @@
       en: "A submission draft has been prepared. Attach your manuscript file in your email client before sending.",
     },
     fallback: {
-      zh: "若未自动打开邮件客户端，请直接发送至 htxia0413@gmail.com。",
-      en: "If your email client does not open automatically, send your submission to htxia0413@gmail.com.",
+      zh: "若未自动打开邮件客户端，请直接发送至 submission@ichingandcivilization.org。",
+      en: "If your email client does not open automatically, send your submission to submission@ichingandcivilization.org.",
     },
   };
   const articleMessages = {
@@ -344,7 +344,8 @@
 
   submissionForms.forEach((form) => {
     const status = form.querySelector("[data-form-status]");
-    const recipient = form.dataset.recipient || "htxia0413@gmail.com";
+    const recipient =
+      form.dataset.recipient || "submission@ichingandcivilization.org";
 
     form.addEventListener("submit", (event) => {
       event.preventDefault();
