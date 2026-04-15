@@ -47,16 +47,16 @@
   };
   const articleMessages = {
     loading: {
-      zh: "正在从数据库读取文章列表……",
-      en: "Loading articles from the database...",
+      zh: "正在加载最新文章……",
+      en: "Loading latest articles...",
     },
     empty: {
-      zh: "数据库已连接，但暂时还没有已发布文章。",
-      en: "The database is connected, but no published articles are available yet.",
+      zh: "当前尚无已发布文章。",
+      en: "No published articles are available at the moment.",
     },
     error: {
-      zh: "文章列表暂时无法读取，请稍后重试。",
-      en: "The article list is temporarily unavailable. Please try again later.",
+      zh: "最新文章暂时无法显示，请稍后再试。",
+      en: "Latest articles are temporarily unavailable. Please try again later.",
     },
   };
 
@@ -157,8 +157,8 @@
     const actions = document.createElement("div");
     actions.className = "article-actions";
     actions.append(
-      createPillLink("内容整理中", "Content in Preparation", ""),
-      createPillLink("目录稍后更新", "Index Updates Soon", ""),
+      createPillLink("刊载通知", "Publication Notice", ""),
+      createPillLink("卷期目录", "Issue Listing", ""),
     );
 
     card.append(meta, title, copy, actions);
@@ -200,8 +200,8 @@
     actions.className = "article-actions";
     actions.append(
       createPillLink(
-        article.pdfUrl ? "查看 PDF" : "PDF 待上线",
-        article.pdfUrl ? "View PDF" : "PDF Coming Soon",
+        article.pdfUrl ? "查看 PDF" : "PDF 未提供",
+        article.pdfUrl ? "View PDF" : "PDF Unavailable",
         article.pdfUrl || "",
       ),
     );
@@ -251,13 +251,13 @@
 
       if (!articles.length) {
         articleGrid.replaceChildren(
-          createStateCard(
-            "暂未发布正式文章",
-            "No Published Articles Yet",
-            "Cloudflare KV 已连接成功。等你写入第一批文章元数据后，这里会自动显示最新目录。",
-            "Cloudflare KV is connected. This section will populate automatically once you publish the first article records.",
-          ),
-        );
+        createStateCard(
+          "暂未发布正式文章",
+          "No Published Articles Yet",
+          "本栏将在文章正式刊发后发布题名、作者、摘要与访问链接。",
+          "This section will publish titles, authors, abstracts, and access links once articles are formally released.",
+        ),
+      );
         setArticleStatusMessage(articleMessages.empty, false);
         return;
       }
@@ -267,8 +267,8 @@
       );
       setArticleStatusMessage(
         {
-          zh: `已从数据库载入 ${articles.length} 篇文章。`,
-          en: `Loaded ${articles.length} articles from the database.`,
+          zh: `已载入 ${articles.length} 篇最新文章。`,
+          en: `Loaded ${articles.length} latest articles.`,
         },
         false,
       );
@@ -277,8 +277,8 @@
         createStateCard(
           "文章列表暂时不可用",
           "Article List Temporarily Unavailable",
-          "数据库接口还没有部署完成，或当前请求失败。完成 Cloudflare 绑定后，这里会自动切换为真实文章列表。",
-          "The database API has not been deployed yet, or the current request failed. This section will switch to the live article list once Cloudflare binding is ready.",
+          "当前文章目录正在更新中，请稍后刷新页面，或先浏览过刊目录与作者指南。",
+          "The article list is currently being updated. Please refresh later, or browse the archives and author guidelines in the meantime.",
         ),
       );
       setArticleStatusMessage(articleMessages.error, true);
@@ -298,12 +298,6 @@
         "aria-label",
         lang === "zh" ? "Switch to English" : "切换到中文",
       );
-    }
-
-    try {
-      localStorage.setItem("journal-language", lang);
-    } catch (error) {
-      // Ignore storage failures.
     }
   }
 
@@ -430,16 +424,6 @@
     });
   });
 
-  let initialLang = "zh";
-  try {
-    initialLang =
-      localStorage.getItem("journal-language") ||
-      localStorage.getItem("center-language") ||
-      "zh";
-  } catch (error) {
-    initialLang = "zh";
-  }
-
-  setLanguage(initialLang === "en" ? "en" : "zh");
+  setLanguage("en");
   loadLatestArticles();
 })();

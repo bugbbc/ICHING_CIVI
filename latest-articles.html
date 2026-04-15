@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -17,15 +17,15 @@
     <link rel="stylesheet" href="site.css" />
   </head>
   <body
-    data-lang="zh"
+    data-lang="en"
     data-title-zh="最新文章 | 易經與文明"
     data-title-en="Latest Articles | I CHING AND CIVILIZATION"
   >
     <header class="site-header">
       <div class="topline">
         <div class="container">
-          <span class="lang-zh">獨立期刊站原型 · 周易研究、經典互證與文明比較</span>
-          <span class="lang-en">Independent journal prototype · Zhouyi studies, classical comparison, and civilizational dialogue</span>
+          <span class="lang-zh">同行評審學術期刊 · 周易研究、經典互證與文明比較</span>
+          <span class="lang-en">Peer-reviewed journal · Zhouyi studies, classical comparison, and civilizational dialogue</span>
         </div>
       </div>
       <div class="container nav-wrap">
@@ -49,7 +49,7 @@
             <a class="is-current" href="latest-articles.html"><span class="lang-zh">最新文章</span><span class="lang-en">Latest Articles</span></a>
             <a href="archives.html"><span class="lang-zh">过刊浏览</span><span class="lang-en">Archives</span></a>
           </nav>
-          <button class="lang-switch" id="lang-switch" type="button">EN</button>
+          <button class="lang-switch" id="lang-switch" type="button">中文</button>
         </div>
       </div>
     </header>
@@ -69,8 +69,8 @@
               <div class="page-kicker"><span class="lang-zh">Current Issue</span><span class="lang-en">Current Issue</span></div>
               <h1 class="page-title"><span class="lang-zh">最新文章</span><span class="lang-en">Latest Articles</span></h1>
               <p class="page-lead">
-                <span class="lang-zh">这一页模拟期刊上线后的“当期内容”结构。当前展示的是创刊期的文章预告式版面，后续可替换为真实的目录、摘要与 PDF 链接。</span>
-                <span class="lang-en">This page models the “current issue” structure for the journal once it launches. The present content functions as a founding-issue preview and can later be replaced by real tables of contents, abstracts, and PDF links.</span>
+                <span class="lang-zh">本页集中呈现当期与近期开载文章，发布题名、作者、摘要以及 PDF、DOI 等正式引文信息，便于检索与持续阅读。</span>
+                <span class="lang-en">This page presents current and recent journal content, publishing titles, authors, abstracts, and formal citation links such as PDFs and DOIs for continued reading and reference.</span>
               </p>
             </article>
 
@@ -80,7 +80,7 @@
                   <div>
                     <div class="issue-meta"><span class="lang-zh">當期聚焦</span><span class="lang-en">Issue Focus</span></div>
                     <div class="cover-title"><span class="lang-zh">文本<br />与解释</span><span class="lang-en">Text<br />and Interpretation</span></div>
-                    <div class="cover-subtitle"><span class="lang-zh">创刊卷聚焦《周易》的文本基础与跨文明解释路径。</span><span class="lang-en">The founding volume focuses on textual foundations and cross-civilizational interpretation of the Zhouyi.</span></div>
+                    <div class="cover-subtitle"><span class="lang-zh">本期内容聚焦《周易》的文本基础、经典互证与跨文明解释路径。</span><span class="lang-en">The current volume focuses on textual foundations, classical comparison, and cross-civilizational interpretation of the Zhouyi.</span></div>
                   </div>
                   <div class="journal-badge">V1</div>
                 </div>
@@ -108,14 +108,14 @@
               <h2 class="section-title"><span class="lang-zh">最新上线文章</span><span class="lang-en">Latest Published Articles</span></h2>
             </div>
             <p class="section-copy">
-              <span class="lang-zh">这一栏会优先从 Cloudflare KV 读取已发布文章。部署完成后，你只需要写入文章元数据，网页就会自动更新列表。</span>
-              <span class="lang-en">This section now loads published article data from Cloudflare KV. Once deployed, you only need to write article metadata and the page will refresh automatically.</span>
+              <span class="lang-zh">本栏按卷期与栏目持续呈现最新刊发文章，提供题名、作者、摘要与正式访问入口。</span>
+              <span class="lang-en">This section presents the latest published articles by issue and section, with titles, authors, abstracts, and formal access links.</span>
             </p>
           </div>
 
           <div class="article-status" data-article-status aria-live="polite">
-            <span class="lang-zh">正在从数据库读取文章列表……</span>
-            <span class="lang-en">Loading articles from the database...</span>
+            <span class="lang-zh">正在加载最新文章……</span>
+            <span class="lang-en">Loading latest articles...</span>
           </div>
           <div class="article-grid js-article-grid"></div>
         </div>
@@ -127,8 +127,8 @@
         <div class="footer-copy">
           <div class="footer-title lang-zh">最新文章</div>
           <div class="footer-title lang-en">Latest Articles</div>
-          <p class="lang-zh">当前页面已经接入 Cloudflare KV，适合展示正式上线文章的标题、作者、摘要、PDF 与 DOI 链接。</p>
-          <p class="lang-en">This page is now wired to Cloudflare KV and ready to display article titles, authors, abstracts, PDFs, and DOI links.</p>
+          <p class="lang-zh">本页持续发布本刊最新文章目录、摘要与访问链接，供研究者及时查阅与引用。</p>
+          <p class="lang-en">This page publishes the journal’s latest tables of contents, abstracts, and access links for timely scholarly reading and citation.</p>
         </div>
         <div class="footer-links">
           <a class="pill-link" href="author-guidelines.html"><span class="lang-zh">我要投稿</span><span class="lang-en">Submit Work</span></a>
