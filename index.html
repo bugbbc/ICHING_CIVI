@@ -6,20 +6,28 @@
     <title>期刊简介 | 易經與文明</title>
     <meta
       name="description"
-      content="《易經與文明》期刊首页，介绍期刊宗旨、研究范围、最新征稿信息与刊物结构。"
+      content="《易經與文明》期刊首页，介绍本刊宗旨、研究范围、出版信息、开放获取政策与编辑委员会。"
     />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <script>
+      try {
+        const lang = localStorage.getItem("iching_civilization_lang");
+        document.documentElement.dataset.preferredLang =
+          lang === "zh" || lang === "en" ? lang : "en";
+      } catch {
+        document.documentElement.dataset.preferredLang = "en";
+      }
+    </script>
     <link
       href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Noto+Sans+SC:wght@400;500;700&family=Noto+Serif+SC:wght@500;600;700&family=Source+Sans+3:wght@400;500;600;700&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="site.css" />
+    <link rel="stylesheet" href="site.css?v=20260416-5" />
   </head>
   <body
-    data-lang="en"
     data-title-zh="期刊简介 | 易經與文明"
-    data-title-en="Journal Overview | I CHING AND CIVILIZATION"
+    data-title-en="About the Journal | I CHING AND CIVILIZATION"
   >
     <header class="site-header">
       <div class="topline">
@@ -42,22 +50,11 @@
           </span>
         </a>
 
-        <button
-          class="menu-toggle"
-          id="menu-toggle"
-          type="button"
-          aria-expanded="false"
-          aria-controls="nav-panel"
-        >
-          <span class="lang-zh">菜单</span>
-          <span class="lang-en">Menu</span>
-        </button>
-
         <div class="nav-panel" id="nav-panel">
           <nav class="nav-links" aria-label="Journal Navigation">
             <a class="is-current" href="index.html">
               <span class="lang-zh">期刊简介</span>
-              <span class="lang-en">Journal</span>
+              <span class="lang-en">About</span>
             </a>
             <a href="editorial-board.html">
               <span class="lang-zh">编辑委员会</span>
@@ -76,243 +73,233 @@
               <span class="lang-en">Archives</span>
             </a>
           </nav>
-          <button class="lang-switch" id="lang-switch" type="button">中文</button>
+          <div class="header-actions">
+            <button class="lang-switch" id="lang-switch" type="button">中文</button>
+          </div>
         </div>
       </div>
     </header>
 
     <main class="page-main">
-      <section class="page-hero">
-        <div class="container">
-          <div class="breadcrumb">
-            <span class="lang-zh">期刊首页</span>
-            <span class="lang-en">Journal Home</span>
-          </div>
-
-          <div class="hero-grid">
-            <article class="hero-copy">
-              <div class="page-kicker">
-                <span class="lang-zh">Peer-Reviewed Journal</span>
-                <span class="lang-en">Peer-Reviewed Journal</span>
-              </div>
-              <h1 class="page-title">
-                <span class="lang-zh">《易經與文明》</span>
-                <span class="lang-en">I CHING AND CIVILIZATION</span>
-              </h1>
-              <p class="page-lead">
-                <span class="lang-zh">《易經與文明》是一个面向《周易》文本研究、经典互证、文明比较、跨语际译介与学术交流的独立期刊网站。站点采用清晰的栏目结构，便于组织投稿、编务、当期内容与过刊归档。</span>
-                <span class="lang-en">I CHING AND CIVILIZATION is an independent journal site devoted to Zhouyi textual studies, classical comparison, civilizational dialogue, translation, and scholarly exchange. Its structure is organized to support submissions, editorial work, current contents, and archival browsing.</span>
-              </p>
-              <div class="lead-actions">
-                <a class="button" href="author-guidelines.html">
-                  <span class="lang-zh">进入作者指南</span>
-                  <span class="lang-en">Open Author Guidelines</span>
-                </a>
-                <a class="button secondary" href="latest-articles.html">
-                  <span class="lang-zh">查看最新文章</span>
-                  <span class="lang-en">View Latest Articles</span>
-                </a>
-              </div>
-              <div class="note-strip">
-                <span class="lang-zh">本刊网站围绕投稿、编务、当期内容与过刊归档建立统一栏目体系，支持持续更新与长期学术发布。</span>
-                <span class="lang-en">The journal site is organized around submissions, editorial administration, current contents, and archival publication, providing a coherent structure for sustained scholarly release.</span>
-              </div>
-            </article>
-
-            <aside class="hero-aside issue-panel">
-              <div class="issue-cover">
-                <div class="cover-top">
-                  <div>
-                    <div class="issue-meta">
-                      <span class="lang-zh">本期卷册</span>
-                      <span class="lang-en">Current Volume</span>
-                    </div>
-                    <div class="cover-title">
-                      <span class="lang-zh">第一卷<br />第一期</span>
-                      <span class="lang-en">Volume 1<br />Issue 1</span>
-                    </div>
-                    <div class="cover-subtitle">
-                      <span class="lang-zh">文本考辨、经典互证与文明比较</span>
-                      <span class="lang-en">Textual philology, classical comparison, and civilizational dialogue</span>
-                    </div>
-                  </div>
-                  <div class="journal-badge">2026</div>
-                </div>
-                <div class="cover-lines" aria-hidden="true">
-                  <span></span>
-                  <span class="broken"></span>
-                  <span></span>
-                </div>
-              </div>
-
-              <div class="meta-grid">
-                <article class="stat-card">
-                  <span class="stat-label">
-                    <span class="lang-zh">摘要</span>
-                    <span class="lang-en">Abstracts</span>
-                  </span>
-                  <span class="stat-value">
-                    <span class="lang-zh">中英双语</span>
-                    <span class="lang-en">Bilingual</span>
-                  </span>
-                </article>
-                <article class="stat-card">
-                  <span class="stat-label">
-                    <span class="lang-zh">评审</span>
-                    <span class="lang-en">Review</span>
-                  </span>
-                  <span class="stat-value">
-                    <span class="lang-zh">匿名同行</span>
-                    <span class="lang-en">Blind Peer</span>
-                  </span>
-                </article>
-                <article class="stat-card">
-                  <span class="stat-label">
-                    <span class="lang-zh">栏目</span>
-                    <span class="lang-en">Sections</span>
-                  </span>
-                  <span class="stat-value">
-                    <span class="lang-zh">五大板块</span>
-                    <span class="lang-en">Five Paths</span>
-                  </span>
-                </article>
-              </div>
-
-              <ul class="issue-list">
-                <li>
-                  <span class="lang-zh">征稿重点一：出土文献与《周易》文本形成史。</span>
-                  <span class="lang-en">Call focus I: excavated manuscripts and the formation of the Zhouyi text.</span>
-                </li>
-                <li>
-                  <span class="lang-zh">征稿重点二：经学网络中的《周易》与其他经典互证。</span>
-                  <span class="lang-en">Call focus II: the Zhouyi in dialogue with other classical corpora.</span>
-                </li>
-                <li>
-                  <span class="lang-zh">征稿重点三：海外译介、荣格接受史与跨文明阐释。</span>
-                  <span class="lang-en">Call focus III: translation history, Jungian reception, and cross-civilizational interpretation.</span>
-                </li>
-              </ul>
-            </aside>
-          </div>
+      <section class="journal-hero">
+        <div class="container journal-hero-inner">
+          <h1 class="journal-hero-title">
+            <span class="lang-zh">期刊简介</span>
+            <span class="lang-en">About the Journal</span>
+          </h1>
         </div>
       </section>
 
-      <section class="section soft">
-        <div class="container">
-          <div class="section-head">
-            <div>
-              <div class="section-tag">
-                <span class="lang-zh">Scope</span>
-                <span class="lang-en">Scope</span>
-              </div>
-              <h2 class="section-title">
-                <span class="lang-zh">期刊的核心研究范围</span>
-                <span class="lang-en">Core Editorial Scope</span>
-              </h2>
-            </div>
-            <p class="section-copy">
-              <span class="lang-zh">期刊将《周易》研究放在一个更大的文明框架中理解，既重视文献基础，也重视跨经典与跨文明的解释能力。</span>
-              <span class="lang-en">The journal places Zhouyi studies in a wider civilizational frame, giving equal weight to textual foundations and comparative interpretive work.</span>
+      <section class="journal-section">
+        <div class="container simple-layout">
+          <article class="journal-article">
+            <h2>
+              <span class="lang-zh">期刊简介</span>
+              <span class="lang-en">About the Journal</span>
+            </h2>
+            <p>
+              <span class="lang-zh">《易经与文明》是一份同行评议学术期刊，致力于研究《周易》及其在文明发展中的思想意义。</span>
+              <span class="lang-en">I Ching and Civilization is a peer-reviewed academic journal dedicated to the study of the I Ching (Book of Changes) and its significance in the development of human civilization.</span>
             </p>
-          </div>
+            <p>
+              <span class="lang-zh">本刊关注《周易》的哲学、文本与制度维度，尤其重视其在法律、治理与社会秩序中的理论价值。</span>
+              <span class="lang-en">The journal promotes rigorous scholarly inquiry into the philosophical, textual, and institutional dimensions of the I Ching, with particular attention to its relevance for understanding law, governance, and social order.</span>
+            </p>
+            <p>
+              <span class="lang-zh">期刊以“文明研究”为方法，将《周易》置于中国传统思想体系与世界文明视野之中加以考察。</span>
+              <span class="lang-en">It adopts a civilizational perspective, situating the I Ching within both the classical Chinese intellectual tradition and the broader context of world civilizations.</span>
+            </p>
+            <p>
+              <span class="lang-zh">本刊鼓励跨学科研究，包括哲学、历史、法学、政治理论及文明比较研究等领域。</span>
+              <span class="lang-en">The journal encourages interdisciplinary research, including but not limited to philosophy, history, law, political theory, and comparative civilization studies.</span>
+            </p>
+            <p>
+              <span class="lang-zh">同时，期刊重视与国际学界的对话，推动《周易》与西方思想传统之间的比较研究与理论交流。</span>
+              <span class="lang-en">In addition, it seeks to foster dialogue between different intellectual traditions by engaging with global scholarship, including comparative studies with Western philosophical and institutional thought.</span>
+            </p>
+            <p>
+              <span class="lang-zh">本刊旨在通过对经典思想的深入研究，推动文明研究的深化，并探索其对当代制度与思想问题的启示。</span>
+              <span class="lang-en">I Ching and Civilization aims to contribute to the renewal of civilizational studies by exploring how classical wisdom can inform contemporary intellectual and institutional challenges.</span>
+            </p>
+            <p>
+              <span class="lang-zh">本刊将《周易》不仅视为一部经典文本，也视为理解文明问题的活的思想资源。</span>
+              <span class="lang-en">The journal approaches the I Ching not merely as a classical text, but as a living intellectual resource for the study of civilization.</span>
+            </p>
 
-          <div class="card-grid">
-            <article class="content-card">
-              <span class="mini-label">Area I</span>
-              <h3>
-                <span class="lang-zh">文本研究与材料整理</span>
-                <span class="lang-en">Textual Study and Source Work</span>
-              </h3>
-              <p>
-                <span class="lang-zh">欢迎围绕传世本、帛书、简牍、异文系统、图像资料与版本谱系的研究论文与材料报告。</span>
-                <span class="lang-en">We invite studies on received texts, silk manuscripts, bamboo slips, variant systems, visual materials, and textual genealogies.</span>
-              </p>
-            </article>
-            <article class="content-card">
-              <span class="mini-label">Area II</span>
-              <h3>
-                <span class="lang-zh">经典互证与思想史</span>
-                <span class="lang-en">Classical Comparison and Intellectual History</span>
-              </h3>
-              <p>
-                <span class="lang-zh">鼓励《周易》与《尚书》《诗经》《黄帝内经》及礼乐、政治、医学传统的综合研究。</span>
-                <span class="lang-en">The journal encourages work linking the Zhouyi with the Shangshu, Shijing, Huangdi Neijing, and wider ritual, political, and medical traditions.</span>
-              </p>
-            </article>
-            <article class="content-card">
-              <span class="mini-label">Area III</span>
-              <h3>
-                <span class="lang-zh">文明比较与全球接受史</span>
-                <span class="lang-en">Civilizational Comparison and Global Reception</span>
-              </h3>
-              <p>
-                <span class="lang-zh">期刊尤其重视自然法传统、分析心理学、海外汉学与翻译史中的《易》学讨论。</span>
-                <span class="lang-en">Special attention is given to natural law traditions, analytical psychology, global Sinology, and the translation history of the Yijing.</span>
-              </p>
-            </article>
-          </div>
-        </div>
-      </section>
+            <h2>
+              <span class="lang-zh">办刊宗旨与范围</span>
+              <span class="lang-en">Aim and Scope</span>
+            </h2>
+            <p>
+              <span class="lang-zh">本刊致力于从文本、哲学与文明维度研究《周易》，推动中国古典思想与其他世界文明之间的学术对话，特别关注法律、治理与制度发展问题。</span>
+              <span class="lang-en">This journal is dedicated to the study of the I Ching in its textual, philosophical, and civilizational dimensions. It seeks to promote dialogue between classical Chinese thought and other world civilizations, with particular attention to law, governance, and institutional development.</span>
+            </p>
 
-      <section class="section">
-        <div class="container split-layout">
-          <article class="archive-panel">
-            <div class="section-tag">
-              <span class="lang-zh">Structure</span>
-              <span class="lang-en">Structure</span>
-            </div>
-            <h3>
-              <span class="lang-zh">期刊站的五个主要入口</span>
-              <span class="lang-en">Five Main Entry Points</span>
-            </h3>
-            <ul class="detail-list">
-              <li>
-                <span class="lang-zh">期刊简介：介绍刊物宗旨、学术定位与征稿方向。</span>
-                <span class="lang-en">Journal overview: mission, editorial positioning, and calls for papers.</span>
-              </li>
-              <li>
-                <span class="lang-zh">编辑委员会：展示编委架构、职责分工与学术顾问板块。</span>
-                <span class="lang-en">Editorial board: editorial structure, responsibilities, and advisory circles.</span>
-              </li>
-              <li>
-                <span class="lang-zh">作者指南：提供格式规范、伦理要求与投稿接口。</span>
-                <span class="lang-en">Author guidelines: formatting rules, ethics policies, and submission interface.</span>
-              </li>
-              <li>
-                <span class="lang-zh">最新文章：展示当期或近期期刊内容与摘要。</span>
-                <span class="lang-en">Latest articles: current issue contents and article previews.</span>
-              </li>
-              <li>
-                <span class="lang-zh">过刊浏览：按卷期浏览历年目录与专题。</span>
-                <span class="lang-en">Archives: browse back issues, dossiers, and issue histories.</span>
-              </li>
-            </ul>
+            <h2>
+              <span class="lang-zh">开放获取声明</span>
+              <span class="lang-en">Open Access Statement</span>
+            </h2>
+            <p>
+              <span class="lang-zh">本刊为开放获取期刊。所有文章一经发表即在网络上免费公开，读者无需订阅或支付任何费用即可获取全文。</span>
+              <span class="lang-en">This is an open access journal. All articles are freely available online immediately upon publication, without subscription or access fees.</span>
+            </p>
+
+            <h2>
+              <span class="lang-zh">版权与许可</span>
+              <span class="lang-en">Copyright and License</span>
+            </h2>
+            <p>
+              <span class="lang-zh">作者保留其作品的版权。文章按照“知识共享署名许可协议（CC BY 4.0）”发布，允许在注明作者及来源的前提下，对作品进行自由使用、传播与再创作。</span>
+              <span class="lang-en">Authors retain copyright of their work. Articles are published under the terms of the Creative Commons Attribution License (CC BY 4.0), which permits unrestricted use, distribution, and reproduction in any medium, provided the original author and source are properly cited.</span>
+            </p>
           </article>
 
-          <aside class="callout-card">
-            <div class="section-tag">
-              <span class="lang-zh">Standards</span>
-              <span class="lang-en">Standards</span>
-            </div>
-            <h3>
-              <span class="lang-zh">期刊发布标准</span>
-              <span class="lang-en">Journal Publication Standards</span>
-            </h3>
-            <p>
-              <span class="lang-zh">本刊以同行评审、双语摘要、规范引注、正式目录发布与长期归档为基本标准，确保研究成果能够被稳定阅读、检索与引用。</span>
-              <span class="lang-en">The journal is structured around peer review, bilingual abstracts, standardized documentation, formal tables of contents, and long-term archiving so that published research remains stable, citable, and discoverable.</span>
-            </p>
-            <div class="issue-actions">
-              <a class="pill-link" href="editorial-board.html">
-                <span class="lang-zh">查看编委会</span>
-                <span class="lang-en">View Editorial Board</span>
-              </a>
-              <a class="pill-link" href="archives.html">
-                <span class="lang-zh">浏览过刊结构</span>
-                <span class="lang-en">Browse Archives</span>
-              </a>
-            </div>
+          <aside class="journal-sidebar">
+            <section class="journal-panel">
+              <h3>
+                <span class="lang-zh">出版信息</span>
+                <span class="lang-en">Publication Information</span>
+              </h3>
+              <dl class="journal-meta-list">
+                <dt><span class="lang-zh">出版频率</span><span class="lang-en">Publication Frequency</span></dt>
+                <dd><span class="lang-zh">年刊</span><span class="lang-en">Annual</span></dd>
+                <dt><span class="lang-zh">创刊时间</span><span class="lang-en">First Issue</span></dt>
+                <dd><span class="lang-zh">2027年1月</span><span class="lang-en">January 2027</span></dd>
+                <dt><span class="lang-zh">语言</span><span class="lang-en">Languages</span></dt>
+                <dd><span class="lang-zh">英文与中文</span><span class="lang-en">English and Chinese</span></dd>
+                <dt><span class="lang-zh">国际标准连续出版物号（印刷版）</span><span class="lang-en">ISSN (Print)</span></dt>
+                <dd>xxxx-xxxx</dd>
+                <dt><span class="lang-zh">国际标准连续出版物号（网络版）</span><span class="lang-en">ISSN (Online)</span></dt>
+                <dd>xxxx-xxxx</dd>
+              </dl>
+            </section>
+
+            <section class="journal-panel">
+              <h3>
+                <span class="lang-zh">出版者</span>
+                <span class="lang-en">Publisher</span>
+              </h3>
+              <p>
+                <span class="lang-zh">易经文明研究院</span>
+                <span class="lang-en">I Ching Civilization Institute</span>
+              </p>
+              <p>
+                <span class="lang-zh">香港九龙旺角弥敦道610号荷李活商业中心11楼1111室</span>
+                <span class="lang-en">Room 1111, 11/F, Hollywood Plaza, 610 Nathan Road, Mong Kok, Kowloon, Hong Kong</span>
+              </p>
+              <p>
+                <span class="lang-zh">电子邮箱：</span>
+                <span class="lang-en">Email: </span>
+                <a href="mailto:info@ichingciv.org">info@ichingciv.org</a>
+              </p>
+              <p>
+                <span class="lang-zh">网站：</span>
+                <span class="lang-en">Website: </span>
+                <a href="https://www.ichingciv.org" target="_blank" rel="noreferrer">https://www.ichingciv.org</a>
+              </p>
+            </section>
+
+            <section class="journal-panel">
+              <h3>
+                <span class="lang-zh">版面费与投稿费</span>
+                <span class="lang-en">Article Processing Charges</span>
+              </h3>
+              <p>
+                <span class="lang-zh">本刊不收取任何文章处理费用（APC）或投稿费用。</span>
+                <span class="lang-en">This journal does not charge any article processing fees (APC) or submission fees.</span>
+              </p>
+            </section>
+
+            <section class="journal-panel">
+              <h3>
+                <span class="lang-zh">免责声明</span>
+                <span class="lang-en">Disclaimer</span>
+              </h3>
+              <p>
+                <span class="lang-zh">本刊所发表文章的观点仅代表作者个人立场，并不代表出版机构或编委会的观点。</span>
+                <span class="lang-en">The views expressed in this journal are those of the authors and do not necessarily reflect the views of the publisher or editorial board.</span>
+              </p>
+            </section>
           </aside>
+        </div>
+      </section>
+
+      <section class="journal-section">
+        <div class="container">
+          <div class="simple-section-head">
+            <h2 class="simple-section-title">
+              <span class="lang-zh">编辑委员会</span>
+              <span class="lang-en">Editorial Board</span>
+            </h2>
+          </div>
+          <div class="board-simple">
+            <section class="board-group">
+              <h3>
+                <span class="lang-zh">主编</span>
+                <span class="lang-en">Editor-in-Chief</span>
+              </h3>
+              <ul>
+                <li>
+                  <span class="lang-zh">張遠和，上海海洋大学</span>
+                  <span class="lang-en">Zhang Yuanhe, Shanghai Ocean University</span>
+                </li>
+              </ul>
+            </section>
+
+            <section class="board-group">
+              <h3>
+                <span class="lang-zh">副主编</span>
+                <span class="lang-en">Associate Editors</span>
+              </h3>
+              <ul>
+                <li>
+                  <span class="lang-zh">樓蘭，上海海洋大学</span>
+                  <span class="lang-en">Lou Lan, Shanghai Ocean University</span>
+                </li>
+                <li>
+                  <span class="lang-zh">劉現合，上海海洋大学</span>
+                  <span class="lang-en">Liu Xianhe, Shanghai Ocean University</span>
+                </li>
+              </ul>
+            </section>
+
+            <section class="board-group">
+              <h3>
+                <span class="lang-zh">编委</span>
+                <span class="lang-en">Editorial Board Members</span>
+              </h3>
+              <ul>
+                <li>
+                  <span class="lang-zh">丁四新，清华大学</span>
+                  <span class="lang-en">Ding Sixin, Tsinghua University</span>
+                </li>
+                <li>
+                  <span class="lang-zh">李尚信，山东大学</span>
+                  <span class="lang-en">Li Shangxin, Shandong University</span>
+                </li>
+                <li>
+                  <span class="lang-zh">張文智，山东大学</span>
+                  <span class="lang-en">Zhang Wenzhi, Shandong University</span>
+                </li>
+                <li>
+                  <span class="lang-zh">馮象，清华大学</span>
+                  <span class="lang-en">Feng Xiang, Tsinghua University</span>
+                </li>
+                <li>
+                  <span class="lang-zh">張千帆，北京大学</span>
+                  <span class="lang-en">Zhang Qianfan, Peking University</span>
+                </li>
+                <li>
+                  <span class="lang-zh">王希，印第安纳宾夕法尼亚大学</span>
+                  <span class="lang-en">Wang Xi, Indiana University of Pennsylvania</span>
+                </li>
+                <li>
+                  <span class="lang-zh">卓新平，中国社会科学院</span>
+                  <span class="lang-en">Zhuo Xinping, Chinese Academy of Social Sciences</span>
+                </li>
+              </ul>
+            </section>
+          </div>
         </div>
       </section>
     </main>
@@ -322,22 +309,24 @@
         <div class="footer-copy">
           <div class="footer-title lang-zh">易經與文明</div>
           <div class="footer-title lang-en">I CHING AND CIVILIZATION</div>
-          <p class="lang-zh">独立学术期刊网站，面向文本研究、经典互证、文明比较与国际学术投稿。</p>
-          <p class="lang-en">An independent scholarly journal site for textual research, classical comparison, civilizational dialogue, and international submissions.</p>
+          <p class="lang-zh">开放获取同行评议学术期刊，关注《周易》研究、文明比较以及法律与治理问题。</p>
+          <p class="lang-en">A peer-reviewed open access journal devoted to I Ching studies, civilizational comparison, and questions of law and governance.</p>
+          <p class="lang-zh">© 2027 易经文明研究院</p>
+          <p class="lang-en">© 2027 I Ching Civilization Institute</p>
         </div>
         <div class="footer-links">
           <a class="pill-link" href="author-guidelines.html">
             <span class="lang-zh">作者指南</span>
-            <span class="lang-en">Author Guidelines</span>
+            <span class="lang-en">For Authors</span>
           </a>
           <a class="pill-link" href="latest-articles.html">
             <span class="lang-zh">最新文章</span>
-            <span class="lang-en">Latest Articles</span>
+            <span class="lang-en">Articles</span>
           </a>
         </div>
       </div>
     </footer>
 
-    <script src="site.js?v=20260413-1"></script>
+    <script src="site.js?v=20260416-5"></script>
   </body>
 </html>

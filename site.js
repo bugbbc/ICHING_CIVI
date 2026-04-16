@@ -2,8 +2,7 @@
   const body = document.body;
   const html = document.documentElement;
   const langSwitch = document.getElementById("lang-switch");
-  const menuToggle = document.getElementById("menu-toggle");
-  const navPanel = document.getElementById("nav-panel");
+  const langStorageKey = "iching_civilization_lang";
   const titleText = {
     zh: body.dataset.titleZh || document.title,
     en: body.dataset.titleEn || document.title,
@@ -17,18 +16,14 @@
     zh: {
       placeholder: "请选择稿件类型",
       research: "研究论文",
-      textual: "文本札记",
-      translation: "译介与评注",
-      review: "书评或综述",
-      report: "学术动态",
+      reviewArticle: "综述论文",
+      bookReview: "书评",
     },
     en: {
       placeholder: "Select manuscript type",
       research: "Research Article",
-      textual: "Textual Note",
-      translation: "Translation and Commentary",
-      review: "Review Essay or Book Review",
-      report: "Scholarly Report",
+      reviewArticle: "Review Article",
+      bookReview: "Book Review",
     },
   };
   const formMessages = {
@@ -103,6 +98,21 @@
     articleStatus.classList.toggle("is-error", Boolean(isError));
     articleStatus.replaceChildren();
     appendLangSpans(articleStatus, message.zh, message.en);
+  }
+
+  function getStoredLanguage() {
+    try {
+      const stored = window.localStorage.getItem(langStorageKey);
+      return stored === "zh" || stored === "en" ? stored : null;
+    } catch {
+      return null;
+    }
+  }
+
+  function storeLanguage(lang) {
+    try {
+      window.localStorage.setItem(langStorageKey, lang);
+    } catch {}
   }
 
   function formatArticleDate(value, locale) {
@@ -285,12 +295,17 @@
     }
   }
 
-  function setLanguage(lang) {
+  function setLanguage(lang, options = {}) {
     body.dataset.lang = lang;
+    html.dataset.preferredLang = lang;
     html.lang = lang === "zh" ? "zh-CN" : "en";
     document.title = titleText[lang];
     updatePlaceholders(lang);
     updateSelectLabels(lang);
+
+    if (options.persist !== false) {
+      storeLanguage(lang);
+    }
 
     if (langSwitch) {
       langSwitch.textContent = lang === "zh" ? "EN" : "中文";
@@ -305,34 +320,6 @@
     langSwitch.addEventListener("click", () => {
       const nextLang = body.dataset.lang === "zh" ? "en" : "zh";
       setLanguage(nextLang);
-    });
-  }
-
-  if (menuToggle && navPanel) {
-    menuToggle.addEventListener("click", () => {
-      const isOpen = navPanel.classList.toggle("open");
-      menuToggle.setAttribute("aria-expanded", String(isOpen));
-    });
-
-    Array.from(document.querySelectorAll(".nav-links a")).forEach((link) => {
-      link.addEventListener("click", () => {
-        navPanel.classList.remove("open");
-        menuToggle.setAttribute("aria-expanded", "false");
-      });
-    });
-
-    document.addEventListener("click", (event) => {
-      if (!navPanel.contains(event.target) && event.target !== menuToggle) {
-        navPanel.classList.remove("open");
-        menuToggle.setAttribute("aria-expanded", "false");
-      }
-    });
-
-    window.addEventListener("resize", () => {
-      if (window.innerWidth > 960) {
-        navPanel.classList.remove("open");
-        menuToggle.setAttribute("aria-expanded", "false");
-      }
     });
   }
 
@@ -424,6 +411,6 @@
     });
   });
 
-  setLanguage("en");
+  setLanguage(getStoredLanguage() || "en", { persist: false });
   loadLatestArticles();
 })();

@@ -6,18 +6,26 @@
     <title>编辑委员会 | 易經與文明</title>
     <meta
       name="description"
-      content="《易經與文明》编辑委员会页面，展示本刊编委架构、职责分工与审稿工作流程。"
+      content="《易經與文明》编辑委员会页面，展示本刊正式编委名单与编辑治理信息。"
     />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <script>
+      try {
+        const lang = localStorage.getItem("iching_civilization_lang");
+        document.documentElement.dataset.preferredLang =
+          lang === "zh" || lang === "en" ? lang : "en";
+      } catch {
+        document.documentElement.dataset.preferredLang = "en";
+      }
+    </script>
     <link
       href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Noto+Sans+SC:wght@400;500;700&family=Noto+Serif+SC:wght@500;600;700&family=Source+Sans+3:wght@400;500;600;700&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="site.css" />
+    <link rel="stylesheet" href="site.css?v=20260416-5" />
   </head>
   <body
-    data-lang="en"
     data-title-zh="编辑委员会 | 易經與文明"
     data-title-en="Editorial Board | I CHING AND CIVILIZATION"
   >
@@ -37,138 +45,136 @@
             <span class="brand-domain">ichingandcivilization.org</span>
           </span>
         </a>
-        <button class="menu-toggle" id="menu-toggle" type="button" aria-expanded="false" aria-controls="nav-panel">
-          <span class="lang-zh">菜单</span>
-          <span class="lang-en">Menu</span>
-        </button>
         <div class="nav-panel" id="nav-panel">
           <nav class="nav-links" aria-label="Journal Navigation">
-            <a href="index.html"><span class="lang-zh">期刊简介</span><span class="lang-en">Journal</span></a>
+            <a href="index.html"><span class="lang-zh">期刊简介</span><span class="lang-en">About</span></a>
             <a class="is-current" href="editorial-board.html"><span class="lang-zh">编辑委员会</span><span class="lang-en">Editorial Board</span></a>
             <a href="author-guidelines.html"><span class="lang-zh">作者指南</span><span class="lang-en">Author Guidelines</span></a>
             <a href="latest-articles.html"><span class="lang-zh">最新文章</span><span class="lang-en">Latest Articles</span></a>
             <a href="archives.html"><span class="lang-zh">过刊浏览</span><span class="lang-en">Archives</span></a>
           </nav>
-          <button class="lang-switch" id="lang-switch" type="button">中文</button>
+          <div class="header-actions">
+            <button class="lang-switch" id="lang-switch" type="button">中文</button>
+          </div>
         </div>
       </div>
     </header>
 
     <main class="page-main">
-      <section class="page-hero">
-        <div class="container">
-          <div class="breadcrumb">
-            <a href="index.html"><span class="lang-zh">期刊首页</span><span class="lang-en">Journal Home</span></a>
-            <span aria-hidden="true">/</span>
+      <section class="journal-hero">
+        <div class="container journal-hero-inner">
+          <h1 class="journal-hero-title">
             <span class="lang-zh">编辑委员会</span>
             <span class="lang-en">Editorial Board</span>
-          </div>
+          </h1>
+        </div>
+      </section>
 
-          <div class="hero-grid">
-            <article class="hero-copy">
-              <div class="page-kicker"><span class="lang-zh">Editorial Board</span><span class="lang-en">Editorial Board</span></div>
-              <h1 class="page-title"><span class="lang-zh">编辑委员会</span><span class="lang-en">Editorial Board</span></h1>
-              <p class="page-lead">
-                <span class="lang-zh">本页公布《易經與文明》的编委架构、栏目分工与评审流程，说明期刊在学术方向、编辑协调、匿名评审与国际交流方面的组织方式。</span>
-                <span class="lang-en">This page presents the journal’s editorial structure, section responsibilities, and review procedures, outlining how I CHING AND CIVILIZATION organizes intellectual direction, editorial coordination, blind review, and international exchange.</span>
-              </p>
-              <div class="note-strip">
-                <span class="lang-zh">编委会页面按照主编、执行编辑、栏目编辑与国际顾问等岗位组织，便于持续公布正式任命信息与学术分工。</span>
-                <span class="lang-en">The board page is organized around the editor-in-chief, managing editor, section editors, and international advisors so that formal appointments and scholarly responsibilities may be published clearly.</span>
-              </div>
-            </article>
+      <section class="journal-section">
+        <div class="container simple-layout">
+          <article class="journal-article">
+            <h2>
+              <span class="lang-zh">编辑委员会</span>
+              <span class="lang-en">Editorial Board</span>
+            </h2>
+            <p>
+              <span class="lang-zh">本页公布《易經與文明》的正式编委名单。编辑委员会负责维护本刊的学术方向、审稿标准与出版质量。</span>
+              <span class="lang-en">This page publishes the formal editorial appointments of I CHING AND CIVILIZATION. The editorial board is responsible for maintaining the journal’s scholarly direction, review standards, and publication quality.</span>
+            </p>
+            <p>
+              <span class="lang-zh">本刊采取同行评议制度，编委会在稿件遴选、匿名评审组织与学术把关方面承担核心职责。</span>
+              <span class="lang-en">The journal operates through peer review, and the editorial board plays a central role in manuscript selection, blind review coordination, and academic oversight.</span>
+            </p>
+          </article>
 
-            <aside class="issue-panel">
-              <div class="section-tag"><span class="lang-zh">Masthead</span><span class="lang-en">Masthead</span></div>
-              <h3><span class="lang-zh">编辑委员会配置</span><span class="lang-en">Editorial Configuration</span></h3>
-              <ul class="issue-list">
-                <li><span class="lang-zh">主编负责学术方向、专题设置与终审判断。</span><span class="lang-en">The editor-in-chief defines editorial direction, dossiers, and final acceptance decisions.</span></li>
-                <li><span class="lang-zh">执行编辑负责流程协调、稿件管理与出版节奏。</span><span class="lang-en">The managing editor coordinates workflow, manuscript handling, and production timing.</span></li>
-                <li><span class="lang-zh">栏目编辑按研究领域处理来稿并组织匿名评审。</span><span class="lang-en">Section editors assign reviewers and handle manuscripts by field.</span></li>
-                <li><span class="lang-zh">国际顾问板块强化期刊的跨语际与跨文明接口。</span><span class="lang-en">An international advisory circle strengthens the journal's cross-linguistic and civilizational reach.</span></li>
+          <aside class="journal-sidebar">
+            <section class="journal-panel">
+              <h3>
+                <span class="lang-zh">本刊概况</span>
+                <span class="lang-en">Journal Profile</span>
+              </h3>
+              <dl class="journal-meta-list">
+                <dt><span class="lang-zh">评审方式</span><span class="lang-en">Review Model</span></dt>
+                <dd><span class="lang-zh">同行评议</span><span class="lang-en">Peer Review</span></dd>
+                <dt><span class="lang-zh">语言</span><span class="lang-en">Languages</span></dt>
+                <dd><span class="lang-zh">英文与中文</span><span class="lang-en">English and Chinese</span></dd>
+                <dt><span class="lang-zh">出版频率</span><span class="lang-en">Frequency</span></dt>
+                <dd><span class="lang-zh">年刊</span><span class="lang-en">Annual</span></dd>
+              </dl>
+            </section>
+          </aside>
+        </div>
+      </section>
+
+      <section class="journal-section">
+        <div class="container">
+          <div class="board-simple">
+            <section class="board-group">
+              <h3>
+                <span class="lang-zh">主编</span>
+                <span class="lang-en">Editor-in-Chief</span>
+              </h3>
+              <ul>
+                <li>
+                  <span class="lang-zh">張遠和，上海海洋大学</span>
+                  <span class="lang-en">Zhang Yuanhe, Shanghai Ocean University</span>
+                </li>
               </ul>
-            </aside>
-          </div>
-        </div>
-      </section>
+            </section>
 
-      <section class="section soft">
-        <div class="container">
-          <div class="section-head">
-            <div>
-              <div class="section-tag"><span class="lang-zh">Roles</span><span class="lang-en">Roles</span></div>
-              <h2 class="section-title"><span class="lang-zh">核心编辑岗位</span><span class="lang-en">Core Editorial Roles</span></h2>
-            </div>
-            <p class="section-copy">
-              <span class="lang-zh">本刊编委体系围绕学术方向、编辑协调、文本研究、比较研究、译介工作与国际顾问支持而设置，体现期刊的基本治理结构。</span>
-              <span class="lang-en">The editorial structure is arranged around intellectual direction, editorial coordination, textual studies, comparative work, translation, and advisory support, reflecting the journal’s core governance model.</span>
-            </p>
-          </div>
+            <section class="board-group">
+              <h3>
+                <span class="lang-zh">副主编</span>
+                <span class="lang-en">Associate Editors</span>
+              </h3>
+              <ul>
+                <li>
+                  <span class="lang-zh">樓蘭，上海海洋大学</span>
+                  <span class="lang-en">Lou Lan, Shanghai Ocean University</span>
+                </li>
+                <li>
+                  <span class="lang-zh">劉現合，上海海洋大学</span>
+                  <span class="lang-en">Liu Xianhe, Shanghai Ocean University</span>
+                </li>
+              </ul>
+            </section>
 
-          <div class="board-grid">
-            <article class="board-card">
-              <span class="role-meta"><span class="lang-zh">主编席位</span><span class="lang-en">Editor-in-Chief</span></span>
-              <h3><span class="lang-zh">学术方向</span><span class="lang-en">Editorial Direction</span></h3>
-              <p><span class="lang-zh">统筹期刊宗旨、栏目边界、专题策划、终审标准与整体学术气质。</span><span class="lang-en">Oversees mission, section boundaries, dossier planning, final review standards, and the overall intellectual character of the journal.</span></p>
-            </article>
-            <article class="board-card">
-              <span class="role-meta"><span class="lang-zh">执行编辑</span><span class="lang-en">Managing Editor</span></span>
-              <h3><span class="lang-zh">流程与出版协调</span><span class="lang-en">Workflow and Production</span></h3>
-              <p><span class="lang-zh">负责收稿节奏、匿名送审、修回联络、版面准备与卷期发布统筹。</span><span class="lang-en">Handles intake, blind review coordination, revisions, production preparation, and issue scheduling.</span></p>
-            </article>
-            <article class="board-card">
-              <span class="role-meta"><span class="lang-zh">文本研究编辑</span><span class="lang-en">Textual Studies Editor</span></span>
-              <h3><span class="lang-zh">版本与材料板块</span><span class="lang-en">Texts and Materials</span></h3>
-              <p><span class="lang-zh">负责《周易》版本学、简帛文献、异文系统与材料整理类稿件。</span><span class="lang-en">Oversees manuscripts on textual criticism, bamboo and silk manuscripts, variants, and documentary foundations.</span></p>
-            </article>
-            <article class="board-card">
-              <span class="role-meta"><span class="lang-zh">比较研究编辑</span><span class="lang-en">Comparative Editor</span></span>
-              <h3><span class="lang-zh">经典与文明比较</span><span class="lang-en">Classics and Civilizations</span></h3>
-              <p><span class="lang-zh">统筹经典互证、思想史、文明比较与跨学科研究类来稿。</span><span class="lang-en">Coordinates work on classical comparison, intellectual history, civilizational dialogue, and interdisciplinary research.</span></p>
-            </article>
-            <article class="board-card">
-              <span class="role-meta"><span class="lang-zh">译介编辑</span><span class="lang-en">Translation Editor</span></span>
-              <h3><span class="lang-zh">海外学界与译介专栏</span><span class="lang-en">Global Reception and Translation</span></h3>
-              <p><span class="lang-zh">处理海外研究综述、译文、评注与国际接受史相关稿件。</span><span class="lang-en">Handles translations, reception history, review essays, and work engaging overseas scholarship.</span></p>
-            </article>
-            <article class="board-card">
-              <span class="role-meta"><span class="lang-zh">学术顾问</span><span class="lang-en">Advisory Circle</span></span>
-              <h3><span class="lang-zh">国际与跨领域接口</span><span class="lang-en">International and Cross-Field Reach</span></h3>
-              <p><span class="lang-zh">构成期刊的外部学术支持网络，增强国际能见度、跨语际对话与议题广度。</span><span class="lang-en">Provides external scholarly support for the journal, strengthening international visibility, cross-linguistic dialogue, and thematic breadth.</span></p>
-            </article>
-          </div>
-        </div>
-      </section>
-
-      <section class="section">
-        <div class="container">
-          <div class="section-head">
-            <div>
-              <div class="section-tag"><span class="lang-zh">Workflow</span><span class="lang-en">Workflow</span></div>
-              <h2 class="section-title"><span class="lang-zh">审稿与编务流程</span><span class="lang-en">Review and Editorial Workflow</span></h2>
-            </div>
-            <p class="section-copy">
-              <span class="lang-zh">下列流程说明本刊对来稿进行初审、外审、终审与排期发布的基本编辑程序。</span>
-              <span class="lang-en">The workflow below outlines the journal’s basic editorial procedure for screening, external review, final decision, and issue scheduling.</span>
-            </p>
-          </div>
-
-          <div class="timeline-grid">
-            <article class="timeline-card">
-              <span class="timeline-step">01</span>
-              <h3><span class="lang-zh">初审分流</span><span class="lang-en">Initial Screening</span></h3>
-              <p><span class="lang-zh">编辑部按栏目与主题对稿件做初步分类，判断是否进入外审。</span><span class="lang-en">The editorial office screens submissions by field and section before external review.</span></p>
-            </article>
-            <article class="timeline-card">
-              <span class="timeline-step">02</span>
-              <h3><span class="lang-zh">匿名评审</span><span class="lang-en">Blind Review</span></h3>
-              <p><span class="lang-zh">每篇文章原则上进入匿名同行评审，并根据意见进行录用、修回或退稿判断。</span><span class="lang-en">Each article normally proceeds to blind peer review, leading to acceptance, revision, or rejection.</span></p>
-            </article>
-            <article class="timeline-card">
-              <span class="timeline-step">03</span>
-              <h3><span class="lang-zh">终审与排期</span><span class="lang-en">Final Decision and Scheduling</span></h3>
-              <p><span class="lang-zh">终审后进入卷期排程、摘要校核、版式准备与网页发布。</span><span class="lang-en">After final decision, manuscripts move into issue scheduling, abstract checks, page preparation, and web publication.</span></p>
-            </article>
+            <section class="board-group">
+              <h3>
+                <span class="lang-zh">编委</span>
+                <span class="lang-en">Editorial Board Members</span>
+              </h3>
+              <ul>
+                <li>
+                  <span class="lang-zh">丁四新，清华大学</span>
+                  <span class="lang-en">Ding Sixin, Tsinghua University</span>
+                </li>
+                <li>
+                  <span class="lang-zh">李尚信，山东大学</span>
+                  <span class="lang-en">Li Shangxin, Shandong University</span>
+                </li>
+                <li>
+                  <span class="lang-zh">張文智，山东大学</span>
+                  <span class="lang-en">Zhang Wenzhi, Shandong University</span>
+                </li>
+                <li>
+                  <span class="lang-zh">馮象，清华大学</span>
+                  <span class="lang-en">Feng Xiang, Tsinghua University</span>
+                </li>
+                <li>
+                  <span class="lang-zh">張千帆，北京大学</span>
+                  <span class="lang-en">Zhang Qianfan, Peking University</span>
+                </li>
+                <li>
+                  <span class="lang-zh">王希，印第安纳宾夕法尼亚大学</span>
+                  <span class="lang-en">Wang Xi, Indiana University of Pennsylvania</span>
+                </li>
+                <li>
+                  <span class="lang-zh">卓新平，中国社会科学院</span>
+                  <span class="lang-en">Zhuo Xinping, Chinese Academy of Social Sciences</span>
+                </li>
+              </ul>
+            </section>
           </div>
         </div>
       </section>
@@ -179,16 +185,16 @@
         <div class="footer-copy">
           <div class="footer-title lang-zh">编辑委员会</div>
           <div class="footer-title lang-en">Editorial Board</div>
-          <p class="lang-zh">本页发布本刊编委架构、岗位职责与评审程序，供作者与读者了解编辑组织方式。</p>
-          <p class="lang-en">This page publishes the journal’s editorial structure, role descriptions, and review procedures for authors and readers.</p>
+          <p class="lang-zh">本页公布《易經與文明》的正式编辑委员会名单，作为本刊学术治理与出版质量控制的重要信息。</p>
+          <p class="lang-en">This page publishes the formal editorial board of I CHING AND CIVILIZATION as part of the journal’s academic governance and publication record.</p>
         </div>
         <div class="footer-links">
-          <a class="pill-link" href="author-guidelines.html"><span class="lang-zh">作者指南</span><span class="lang-en">Author Guidelines</span></a>
-          <a class="pill-link" href="latest-articles.html"><span class="lang-zh">最新文章</span><span class="lang-en">Latest Articles</span></a>
+          <a class="pill-link" href="author-guidelines.html"><span class="lang-zh">作者指南</span><span class="lang-en">For Authors</span></a>
+          <a class="pill-link" href="latest-articles.html"><span class="lang-zh">最新文章</span><span class="lang-en">Articles</span></a>
         </div>
       </div>
     </footer>
 
-    <script src="site.js?v=20260413-1"></script>
+    <script src="site.js?v=20260416-5"></script>
   </body>
 </html>

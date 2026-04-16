@@ -10,14 +10,22 @@
     />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <script>
+      try {
+        const lang = localStorage.getItem("iching_civilization_lang");
+        document.documentElement.dataset.preferredLang =
+          lang === "zh" || lang === "en" ? lang : "en";
+      } catch {
+        document.documentElement.dataset.preferredLang = "en";
+      }
+    </script>
     <link
       href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Noto+Sans+SC:wght@400;500;700&family=Noto+Serif+SC:wght@500;600;700&family=Source+Sans+3:wght@400;500;600;700&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="site.css" />
+    <link rel="stylesheet" href="site.css?v=20260416-5" />
   </head>
   <body
-    data-lang="en"
     data-title-zh="作者指南 | 易經與文明"
     data-title-en="Author Guidelines | I CHING AND CIVILIZATION"
   >
@@ -37,19 +45,17 @@
             <span class="brand-domain">ichingandcivilization.org</span>
           </span>
         </a>
-        <button class="menu-toggle" id="menu-toggle" type="button" aria-expanded="false" aria-controls="nav-panel">
-          <span class="lang-zh">菜单</span>
-          <span class="lang-en">Menu</span>
-        </button>
         <div class="nav-panel" id="nav-panel">
           <nav class="nav-links" aria-label="Journal Navigation">
-            <a href="index.html"><span class="lang-zh">期刊简介</span><span class="lang-en">Journal</span></a>
+            <a href="index.html"><span class="lang-zh">期刊简介</span><span class="lang-en">About</span></a>
             <a href="editorial-board.html"><span class="lang-zh">编辑委员会</span><span class="lang-en">Editorial Board</span></a>
             <a class="is-current" href="author-guidelines.html"><span class="lang-zh">作者指南</span><span class="lang-en">Author Guidelines</span></a>
             <a href="latest-articles.html"><span class="lang-zh">最新文章</span><span class="lang-en">Latest Articles</span></a>
             <a href="archives.html"><span class="lang-zh">过刊浏览</span><span class="lang-en">Archives</span></a>
           </nav>
-          <button class="lang-switch" id="lang-switch" type="button">中文</button>
+          <div class="header-actions">
+            <button class="lang-switch" id="lang-switch" type="button">中文</button>
+          </div>
         </div>
       </div>
     </header>
@@ -66,11 +72,11 @@
 
           <div class="hero-grid">
             <article class="hero-copy">
-              <div class="page-kicker"><span class="lang-zh">Submission</span><span class="lang-en">Submission</span></div>
-              <h1 class="page-title"><span class="lang-zh">作者指南</span><span class="lang-en">Author Guidelines</span></h1>
+              <div class="page-kicker"><span class="lang-zh">For Authors</span><span class="lang-en">For Authors</span></div>
+              <h1 class="page-title"><span class="lang-zh">作者指南</span><span class="lang-en">For Authors</span></h1>
               <p class="page-lead">
-                <span class="lang-zh">本页说明《易經與文明》的投稿范围、编辑与同行评审流程、稿件体例、学术伦理、版权与开放获取政策，供作者正式投稿时参照。</span>
-                <span class="lang-en">This page outlines the submission scope, editorial and peer-review process, manuscript requirements, ethics standards, copyright terms, and open-access policy of I CHING AND CIVILIZATION for formal author reference.</span>
+                <span class="lang-zh">本页提供《易經與文明》的正式投稿说明，包括投稿方式、基本要求、双语要求、稿件格式、审稿流程、学术规范、版权政策与费用说明。</span>
+                <span class="lang-en">This page provides the formal submission instructions for I CHING AND CIVILIZATION, including the submission process, general requirements, bilingual policy, manuscript preparation, review procedure, publication ethics, copyright terms, and fee policy.</span>
               </p>
               <div class="note-strip">
                 <span class="mini-label">
@@ -90,10 +96,10 @@
               <div class="section-tag"><span class="lang-zh">Checklist</span><span class="lang-en">Checklist</span></div>
               <h3><span class="lang-zh">投稿前请确认</span><span class="lang-en">Before You Submit</span></h3>
               <ul class="issue-list">
-                <li><span class="lang-zh">稿件须为原创成果，且不得同时投往其他期刊或出版渠道。</span><span class="lang-en">Submissions must be original and may not be under consideration elsewhere.</span></li>
-                <li><span class="lang-zh">研究论文请控制在 10,000 字以内，并附 100-150 字摘要。</span><span class="lang-en">Research articles should not exceed 10,000 words and must include a 100-150 word abstract.</span></li>
-                <li><span class="lang-zh">为便于双盲评审，请勿在稿件正文中出现作者姓名或其他身份信息。</span><span class="lang-en">To support double-blind review, the author’s name and identifying details should not appear in the manuscript.</span></li>
-                <li><span class="lang-zh">如附图版、表格或引文材料，请同时说明来源、版权与授权状态。</span><span class="lang-en">If you include figures, tables, or source materials, provide full source and permissions information.</span></li>
+                <li><span class="lang-zh">稿件须通过电子邮件发送至 `submission@ichingandcivilization.org`。</span><span class="lang-en">Manuscripts should be submitted by email to `submission@ichingandcivilization.org`.</span></li>
+                <li><span class="lang-zh">正文须匿名处理，作者信息须另附单独文件。</span><span class="lang-en">The manuscript file must be anonymous, and author information must be provided in a separate file.</span></li>
+                <li><span class="lang-zh">邮件标题请采用“投稿—作者姓名—论文标题”格式。</span><span class="lang-en">The email subject line should follow the format “Submission – Author Name – Article Title.”</span></li>
+                <li><span class="lang-zh">稿件格式须为 Word（`.doc` 或 `.docx`）。</span><span class="lang-en">Submissions must be in Word format (`.doc` or `.docx`).</span></li>
               </ul>
             </aside>
           </div>
@@ -104,131 +110,124 @@
         <div class="container">
           <div class="section-head">
             <div>
-              <div class="section-tag"><span class="lang-zh">Types</span><span class="lang-en">Types</span></div>
-              <h2 class="section-title"><span class="lang-zh">可接收的稿件类型</span><span class="lang-en">Accepted Submission Types</span></h2>
+              <div class="section-tag"><span class="lang-zh">Guidelines</span><span class="lang-en">Guidelines</span></div>
+              <h2 class="section-title"><span class="lang-zh">正式作者指南</span><span class="lang-en">Author Guidelines</span></h2>
             </div>
             <p class="section-copy">
-              <span class="lang-zh">《易經與文明》欢迎围绕《周易》文本、经学传统、思想史、比较文明、跨语际译介与接受史展开的来稿，也接受与本刊宗旨密切相关的书评、综述与精选学术动态。</span>
-              <span class="lang-en">I CHING AND CIVILIZATION welcomes submissions on Zhouyi texts, classical traditions, intellectual history, comparative civilization, translation, and reception history, as well as book reviews, review essays, and selected scholarly reports related to the journal’s mission.</span>
-            </p>
-          </div>
-
-          <div class="card-grid">
-            <article class="content-card">
-              <span class="mini-label">Type I</span>
-              <h3><span class="lang-zh">研究论文</span><span class="lang-en">Research Article</span></h3>
-              <p><span class="lang-zh">适用于围绕《周易》文献、经学传统、哲学、神学、思想史与文明比较展开的完整研究论文。</span><span class="lang-en">For full-length scholarly articles on Zhouyi texts, classical traditions, philosophy, theology, intellectual history, and comparative civilization.</span></p>
-            </article>
-            <article class="content-card">
-              <span class="mini-label">Type II</span>
-              <h3><span class="lang-zh">文本札记</span><span class="lang-en">Textual Note</span></h3>
-              <p><span class="lang-zh">适合围绕异文、出土文献、训诂问题、图像材料或局部史料发现展开的专门讨论。</span><span class="lang-en">For focused discussions of variants, excavated texts, philological questions, images, and closely argued source discoveries.</span></p>
-            </article>
-            <article class="content-card">
-              <span class="mini-label">Type III</span>
-              <h3><span class="lang-zh">译介与评注</span><span class="lang-en">Translation and Commentary</span></h3>
-              <p><span class="lang-zh">适用于海外重要论文、历史文献或经典解释文本的译介，并需附必要的学术导言与注释。</span><span class="lang-en">For translations of important essays, historical documents, or interpretive texts, accompanied by a scholarly introduction and commentary.</span></p>
-            </article>
-            <article class="content-card">
-              <span class="mini-label">Type IV</span>
-              <h3><span class="lang-zh">书评或综述</span><span class="lang-en">Book Review or Review Essay</span></h3>
-              <p><span class="lang-zh">适用于围绕新近出版著作、专题研究趋势或学术争点展开的评论、综述与评述。</span><span class="lang-en">For critical reviews of recent books, review essays, and synthetic assessments of current debates in the field.</span></p>
-            </article>
-            <article class="content-card">
-              <span class="mini-label">Type V</span>
-              <h3><span class="lang-zh">学术动态</span><span class="lang-en">Scholarly Report</span></h3>
-              <p><span class="lang-zh">可酌情接收与本刊方向相关的会议述评、资料整理、项目综述与专题动态。</span><span class="lang-en">Selected conference reports, source surveys, project overviews, and thematic scholarly updates may also be considered.</span></p>
-            </article>
-          </div>
-        </div>
-      </section>
-
-      <section class="section">
-        <div class="container">
-          <div class="section-head">
-            <div>
-              <div class="section-tag"><span class="lang-zh">Policies</span><span class="lang-en">Policies</span></div>
-              <h2 class="section-title"><span class="lang-zh">投稿政策与审稿流程</span><span class="lang-en">Submission Policies and Review Process</span></h2>
-            </div>
-            <p class="section-copy">
-              <span class="lang-zh">作者在使用投稿入口前，应先阅读下列正式要求。它们构成《易經與文明》当前的编辑与出版基本政策。</span>
-              <span class="lang-en">Authors should read the following requirements before using the submission interface. They set out the journal’s current editorial and publishing policies.</span>
+              <span class="lang-zh">下列 12 项构成《易經與文明》当前适用的正式作者指南。投稿前请完整阅读，以确保稿件、附件与邮件信息符合要求。</span>
+              <span class="lang-en">The following twelve sections constitute the current formal guidelines for contributors to I CHING AND CIVILIZATION. Please read them carefully before submission to ensure that the manuscript, supporting files, and email information all comply with journal requirements.</span>
             </p>
           </div>
 
           <div class="split-layout">
             <div class="guideline-grid">
               <article class="guideline-card">
-                <span class="mini-label"><span class="lang-zh">Submission</span><span class="lang-en">Submission</span></span>
-                <h3><span class="lang-zh">投稿要求</span><span class="lang-en">Submission Requirements</span></h3>
+                <span class="mini-label">01</span>
+                <h3><span class="lang-zh">一、投稿方式</span><span class="lang-en">1. Submission Process</span></h3>
                 <ul class="detail-list">
-                  <li><span class="lang-zh">研究论文、文本札记、译介与评注、书评及综述，均应通过本页面启动投稿。</span><span class="lang-en">Research articles, textual notes, translations, commentaries, and reviews should all be initiated through this portal.</span></li>
-                  <li><span class="lang-zh">本刊不收取投稿费，录用后亦不支付稿酬。</span><span class="lang-en">The journal charges no submission fee and does not offer monetary remuneration for accepted work.</span></li>
-                  <li><span class="lang-zh">来稿不得同时投往其他期刊或已在其他出版物上发表。</span><span class="lang-en">Submissions must not be under consideration elsewhere or previously published.</span></li>
+                  <li><span class="lang-zh">本刊采用电子邮件投稿。请将稿件发送至：`submission@ichingandcivilization.org`。</span><span class="lang-en">Manuscripts should be submitted by email to: `submission@ichingandcivilization.org`.</span></li>
+                  <li><span class="lang-zh">投稿时须提交论文正文（匿名处理，用于同行评审）以及作者信息单独文件。</span><span class="lang-en">Authors must include a complete anonymous manuscript file for peer review and a separate file containing author information.</span></li>
+                  <li><span class="lang-zh">作者信息文件应包括：姓名、工作单位、联系邮箱、简要学术简介（50–100字）。</span><span class="lang-en">The separate author-information file should include the full name, institutional affiliation, email address, and a brief biographical note (50–100 words).</span></li>
+                  <li><span class="lang-zh">邮件标题格式：投稿—作者姓名—论文标题。</span><span class="lang-en">The email subject line should follow the format: Submission – Author Name – Article Title.</span></li>
+                  <li><span class="lang-zh">投稿后，作者将收到确认邮件。稿件格式须为 Word（`.doc` 或 `.docx`）。</span><span class="lang-en">Authors will receive an acknowledgment email upon submission. Submissions must be in Word format (`.doc` or `.docx`).</span></li>
                 </ul>
               </article>
               <article class="guideline-card">
-                <span class="mini-label"><span class="lang-zh">Review</span><span class="lang-en">Review</span></span>
-                <h3><span class="lang-zh">编辑与同行评审</span><span class="lang-en">Editorial and Peer Review Process</span></h3>
+                <span class="mini-label">02</span>
+                <h3><span class="lang-zh">二、基本要求</span><span class="lang-en">2. General Requirements</span></h3>
                 <ul class="detail-list">
-                  <li><span class="lang-zh">本刊通常采用双盲同行评审制度评估研究论文与适合外审的学术稿件。</span><span class="lang-en">The journal typically uses a double-blind peer-review process for research articles and other suitable scholarly submissions.</span></li>
-                  <li><span class="lang-zh">编辑部先进行初步审核，再将适合的稿件送交外审。</span><span class="lang-en">After an initial editorial audit, suitable submissions are sent out for review.</span></li>
-                  <li><span class="lang-zh">评审周期通常为 3-6 个月，复杂稿件有时可能更久。</span><span class="lang-en">The review process typically takes 3-6 months, and sometimes longer for complex submissions.</span></li>
+                  <li><span class="lang-zh">稿件须为原创成果，未发表且未同时投稿他刊。</span><span class="lang-en">Submissions must be original, unpublished, and not under consideration elsewhere.</span></li>
+                  <li><span class="lang-zh">本刊接受中文与英文稿件。</span><span class="lang-en">The journal accepts English and Chinese manuscripts.</span></li>
+                  <li><span class="lang-zh">所有投稿实行双盲同行评审制度。</span><span class="lang-en">All submissions undergo double-blind peer review.</span></li>
+                  <li><span class="lang-zh">稿件正文中不得出现作者身份信息。</span><span class="lang-en">Manuscripts must not contain identifying information.</span></li>
                 </ul>
               </article>
               <article class="guideline-card">
-                <span class="mini-label"><span class="lang-zh">Manuscript</span><span class="lang-en">Manuscript</span></span>
-                <h3><span class="lang-zh">稿件要求</span><span class="lang-en">Manuscript Requirements</span></h3>
+                <span class="mini-label">03</span>
+                <h3><span class="lang-zh">三、稿件类型与篇幅</span><span class="lang-en">3. Manuscript Types and Length</span></h3>
                 <ul class="detail-list">
-                  <li><span class="lang-zh">本刊欢迎经学、哲学、神学、思想史及相关领域的专业学者、青年学者与博士研究生投稿。</span><span class="lang-en">The editors welcome submissions from professional scholars, early-career researchers, and doctoral candidates in classics, philosophy, theology, intellectual history, and related fields.</span></li>
-                  <li><span class="lang-zh">为便于匿名评审，稿件正文不应出现作者姓名与明显身份信息。</span><span class="lang-en">To facilitate blind review, the author’s name should not appear in the manuscript itself.</span></li>
-                  <li><span class="lang-zh">研究论文一般不超过 10,000 字（含注释），并须附 100-150 字摘要。</span><span class="lang-en">Research articles should normally be no longer than 10,000 words, including notes, and must include a 100-150 word abstract.</span></li>
-                  <li><span class="lang-zh">文本札记、译介与评注可根据材料性质适度短于研究论文。</span><span class="lang-en">Textual notes, translations, and commentaries may be shorter when appropriate to the material.</span></li>
+                  <li><span class="lang-zh">研究论文：5000–10000字。</span><span class="lang-en">Research Articles: 5,000–10,000 words.</span></li>
+                  <li><span class="lang-zh">综述论文：3000–6000字。</span><span class="lang-en">Review Articles: 3,000–6,000 words.</span></li>
+                  <li><span class="lang-zh">书评：800–1500字。</span><span class="lang-en">Book Reviews: 800–1,500 words.</span></li>
                 </ul>
               </article>
               <article class="guideline-card">
-                <span class="mini-label"><span class="lang-zh">Review Essay</span><span class="lang-en">Review Essay</span></span>
-                <h3><span class="lang-zh">书评要求</span><span class="lang-en">Book Review Requirements</span></h3>
+                <span class="mini-label">04</span>
+                <h3><span class="lang-zh">四、双语要求</span><span class="lang-en">4. Language Policy (Bilingual Requirement)</span></h3>
                 <ul class="detail-list">
-                  <li><span class="lang-zh">书评或综述以 750-1000 字为宜，少于 500 字或多于 1500 字通常不予采用。</span><span class="lang-en">Book reviews should normally be 750-1000 words and are generally not accepted if fewer than 500 or more than 1500 words.</span></li>
-                  <li><span class="lang-zh">书评须注明作者、书名、出版社及出版年份。</span><span class="lang-en">All reviews must identify the author, title, publisher, and year of publication.</span></li>
-                  <li><span class="lang-zh">评论应说明该书在当前学术语境中的位置与贡献。</span><span class="lang-en">Reviews should situate the work within current scholarship and explain its contribution.</span></li>
+                  <li><span class="lang-zh">本刊实行双语发表制度。</span><span class="lang-en">The journal adopts a bilingual publication model.</span></li>
+                  <li><span class="lang-zh">稿件可用中文或英文投稿。</span><span class="lang-en">Submissions may be in English or Chinese.</span></li>
+                  <li><span class="lang-zh">录用后须提供：中英文标题、中英文摘要（各150–250字）、中英文关键词（3–6个）。</span><span class="lang-en">Accepted articles must include an English and Chinese title, English and Chinese abstracts (150–250 words each), and 3–6 keywords in both languages.</span></li>
                 </ul>
               </article>
               <article class="guideline-card">
-                <span class="mini-label"><span class="lang-zh">Style</span><span class="lang-en">Style</span></span>
-                <h3><span class="lang-zh">体例与引注</span><span class="lang-en">Style and Documentation</span></h3>
+                <span class="mini-label">05</span>
+                <h3><span class="lang-zh">五、稿件格式</span><span class="lang-en">5. Manuscript Preparation</span></h3>
                 <ul class="detail-list">
-                  <li><span class="lang-zh">本刊采用《芝加哥格式手册》作为基本体例依据。</span><span class="lang-en">The journal follows the Chicago Manual of Style as its basic style guide.</span></li>
-                  <li><span class="lang-zh">引注可使用尾注体例，也可采用作者-年份格式，但须全文统一。</span><span class="lang-en">Contributors may use either endnotes or the author-date system, provided the format is consistent throughout.</span></li>
-                  <li><span class="lang-zh">建议提供中英文摘要与关键词，便于双语展示与后续检索。</span><span class="lang-en">Chinese and English abstracts and keywords are strongly encouraged for bilingual presentation and indexing.</span></li>
-                  <li><span class="lang-zh">本刊偏重文本、思想与诠释研究，强量化稿件宜另投更适合的期刊；图表与示意图应尽量从简。</span><span class="lang-en">Given the journal’s textual and interpretive focus, strongly quantitative work may be better suited elsewhere, and figures, charts, and diagrams should be kept to a minimum.</span></li>
+                  <li><span class="lang-zh">稿件应使用双倍行距、标准页边距。</span><span class="lang-en">Manuscripts should be double-spaced with standard margins.</span></li>
+                  <li><span class="lang-zh">稿件应包含以下结构：标题、摘要、关键词、正文、参考文献。</span><span class="lang-en">Manuscripts should include the following sections: Title, Abstract, Keywords, Main Text, and References.</span></li>
+                  <li><span class="lang-zh">标题层级应简明，不编号。</span><span class="lang-en">Use clear, concise, unnumbered headings.</span></li>
+                  <li><span class="lang-zh">注释与引用采用芝加哥格式（Chicago Style）。</span><span class="lang-en">Follow the Chicago Manual of Style for citations and notes.</span></li>
                 </ul>
               </article>
               <article class="guideline-card">
-                <span class="mini-label"><span class="lang-zh">Ethics</span><span class="lang-en">Ethics</span></span>
-                <h3><span class="lang-zh">学术伦理</span><span class="lang-en">Ethics Policy</span></h3>
+                <span class="mini-label">06</span>
+                <h3><span class="lang-zh">六、图表要求</span><span class="lang-en">6. Figures and Tables</span></h3>
                 <ul class="detail-list">
-                  <li><span class="lang-zh">来稿必须杜绝抄袭、数据伪造与事实篡改。</span><span class="lang-en">Submissions must be free of plagiarism, data fabrication, and falsification.</span></li>
-                  <li><span class="lang-zh">稿件评估仅依据其学术内容、原创性与学术相关性，不以作者的种族、性别、宗教、国籍或政治立场为判断依据。</span><span class="lang-en">Manuscripts are evaluated solely on intellectual content, originality, and scholarly relevance, without regard to the author’s race, gender, religion, citizenship, or political philosophy.</span></li>
-                  <li><span class="lang-zh">编辑、作者与审稿人应主动披露利益冲突；如已刊文章不符合上述标准，编辑部保留撤稿权。</span><span class="lang-en">Editors, authors, and reviewers must disclose conflicts of interest. Retractions may be issued if published work is found not to meet these standards.</span></li>
+                  <li><span class="lang-zh">图表应尽量精简。</span><span class="lang-en">Use figures and tables sparingly.</span></li>
+                  <li><span class="lang-zh">请提供高清格式文件（TIFF、JPG、PNG）。</span><span class="lang-en">Submit high-resolution files (TIFF, JPG, PNG).</span></li>
+                  <li><span class="lang-zh">图表必须附标题说明并注明来源。</span><span class="lang-en">Provide captions and sources for all figures and tables.</span></li>
                 </ul>
               </article>
               <article class="guideline-card">
-                <span class="mini-label"><span class="lang-zh">Copyright</span><span class="lang-en">Copyright</span></span>
-                <h3><span class="lang-zh">版权与转载</span><span class="lang-en">Copyright</span></h3>
+                <span class="mini-label">07</span>
+                <h3><span class="lang-zh">七、作者信息</span><span class="lang-en">7. Author Information</span></h3>
                 <ul class="detail-list">
-                  <li><span class="lang-zh">作者投稿即保证作品为原创成果，且不侵犯任何既有版权或第三方权利。</span><span class="lang-en">Authors warrant that submitted work is original and does not infringe any existing copyright or third-party rights.</span></li>
-                  <li><span class="lang-zh">除非另有约定，稿件一经录用，相关出版版权由出版方持有；作者通常可在申请后获得转载许可。</span><span class="lang-en">Unless otherwise agreed, legal copyright in accepted work is held by the publisher, and reprint rights are normally granted upon request.</span></li>
-                  <li><span class="lang-zh">为便于传播，出版方可授权第三方数据库或平台收录、展示与分发文章，作者不因此另获报酬。</span><span class="lang-en">For dissemination, the publisher may authorize third-party databases and platforms to reproduce, incorporate, display, and distribute the work, without additional compensation to the author.</span></li>
+                  <li><span class="lang-zh">作者信息须单独提交，以确保匿名评审。</span><span class="lang-en">Author details must be submitted separately to ensure anonymity.</span></li>
+                  <li><span class="lang-zh">应包括：姓名、单位、邮箱、简要学术简介。</span><span class="lang-en">The file should include the full name, institutional affiliation, contact email, and a short biography.</span></li>
                 </ul>
               </article>
               <article class="guideline-card">
-                <span class="mini-label"><span class="lang-zh">Open Access</span><span class="lang-en">Open Access</span></span>
-                <h3><span class="lang-zh">开放获取政策</span><span class="lang-en">Open Access Policy</span></h3>
+                <span class="mini-label">08</span>
+                <h3><span class="lang-zh">八、审稿流程</span><span class="lang-en">8. Peer Review Process</span></h3>
                 <ul class="detail-list">
-                  <li><span class="lang-zh">本刊坚持即时开放获取，已刊内容原则上向公众免费开放。</span><span class="lang-en">The journal provides immediate open access to its published content.</span></li>
-                  <li><span class="lang-zh">我们相信，让研究成果被自由阅读、引用与传播，有助于推动全球范围内的知识交流。</span><span class="lang-en">We believe that making research freely available supports a broader global exchange of knowledge.</span></li>
+                  <li><span class="lang-zh">编辑初审。</span><span class="lang-en">Initial editorial screening.</span></li>
+                  <li><span class="lang-zh">双盲同行评议（通常 2 位审稿人）。</span><span class="lang-en">Double-blind peer review, typically involving two reviewers.</span></li>
+                  <li><span class="lang-zh">审稿周期约 2–4 个月。</span><span class="lang-en">The review period is approximately 2–4 months.</span></li>
+                </ul>
+              </article>
+              <article class="guideline-card">
+                <span class="mini-label">09</span>
+                <h3><span class="lang-zh">九、学术规范</span><span class="lang-en">9. Publication Ethics</span></h3>
+                <ul class="detail-list">
+                  <li><span class="lang-zh">作者须保证论文原创性。</span><span class="lang-en">Authors must ensure the originality of their work.</span></li>
+                  <li><span class="lang-zh">文献引用须规范准确。</span><span class="lang-en">Proper citation of sources is required.</span></li>
+                  <li><span class="lang-zh">严禁抄袭或任何学术不端行为。</span><span class="lang-en">No plagiarism or academic misconduct is permitted.</span></li>
+                  <li><span class="lang-zh">严禁一稿多投。</span><span class="lang-en">Simultaneous submission to other journals is not permitted.</span></li>
+                </ul>
+              </article>
+              <article class="guideline-card">
+                <span class="mini-label">10</span>
+                <h3><span class="lang-zh">十、开放获取与版权</span><span class="lang-en">10. Open Access and Copyright</span></h3>
+                <ul class="detail-list">
+                  <li><span class="lang-zh">本刊为开放获取期刊。</span><span class="lang-en">This journal is fully open access.</span></li>
+                  <li><span class="lang-zh">作者保留版权。</span><span class="lang-en">Authors retain copyright.</span></li>
+                  <li><span class="lang-zh">文章采用 CC BY 4.0 许可协议发表。</span><span class="lang-en">Articles are published under the CC BY 4.0 License.</span></li>
+                </ul>
+              </article>
+              <article class="guideline-card">
+                <span class="mini-label">11</span>
+                <h3><span class="lang-zh">十一、费用说明</span><span class="lang-en">11. Fees</span></h3>
+                <ul class="detail-list">
+                  <li><span class="lang-zh">不收取投稿费。</span><span class="lang-en">No submission fees.</span></li>
+                  <li><span class="lang-zh">不收取版面费（APC）。</span><span class="lang-en">No article processing charges (APC).</span></li>
+                </ul>
+              </article>
+              <article class="guideline-card">
+                <span class="mini-label">12</span>
+                <h3><span class="lang-zh">十二、免责声明</span><span class="lang-en">12. Disclaimer</span></h3>
+                <ul class="detail-list">
+                  <li><span class="lang-zh">本刊所发表文章仅代表作者个人观点，不代表编辑部或出版机构立场。</span><span class="lang-en">The views expressed in published articles are those of the authors and do not necessarily reflect those of the editorial board or publisher.</span></li>
                 </ul>
               </article>
             </div>
@@ -236,7 +235,7 @@
             <aside class="submission-panel" id="submission-interface">
               <span class="mini-label"><span class="lang-zh">Interface</span><span class="lang-en">Interface</span></span>
               <h3><span class="lang-zh">投稿接口</span><span class="lang-en">Submission Interface</span></h3>
-              <p><span class="lang-zh">所有稿件应从本页面启动投稿。系统将生成一封发往正式投稿邮箱 `submission@ichingandcivilization.org` 的邮件草稿；你在邮件客户端中附上匿名稿件、作者信息页及相关附件后即可发送。投稿不收取费用，录用后亦不支付稿酬。</span><span class="lang-en">All submissions should be initiated through this page. The interface prepares a draft email addressed to the journal’s official submission mailbox, `submission@ichingandcivilization.org`; attach the anonymized manuscript, author information page, and any supporting files in your email client before sending. There is no submission fee and no monetary remuneration for accepted work.</span></p>
+              <p><span class="lang-zh">你可以直接使用本页生成投稿邮件草稿。请在邮件客户端中附上匿名稿件与单独作者信息文件，邮件标题建议采用“投稿—作者姓名—论文标题”格式后发送至正式投稿邮箱 `submission@ichingandcivilization.org`。</span><span class="lang-en">You may use this page to generate a draft submission email. Please attach the anonymous manuscript and the separate author-information file in your email client, and send the message to `submission@ichingandcivilization.org` using the recommended subject format: “Submission – Author Name – Article Title.”</span></p>
 
               <form class="submission-form js-submission-form" data-recipient="submission@ichingandcivilization.org">
                 <div class="form-grid">
@@ -269,10 +268,8 @@
                     <select name="articleType">
                       <option value="">请选择稿件类型</option>
                       <option value="research">研究论文</option>
-                      <option value="textual">文本札记</option>
-                      <option value="translation">译介与评注</option>
-                      <option value="review">书评或综述</option>
-                      <option value="report">学术动态</option>
+                      <option value="reviewArticle">综述论文</option>
+                      <option value="bookReview">书评</option>
                     </select>
                   </div>
                   <div class="field-wide">
@@ -315,10 +312,10 @@
               </form>
 
               <ul class="form-notes">
-                <li><span class="lang-zh">正式投稿邮箱：`submission@ichingandcivilization.org`</span><span class="lang-en">Official submission mailbox: `submission@ichingandcivilization.org`</span></li>
-                <li><span class="lang-zh">请在弹出的邮件客户端中手动附加匿名稿件、作者信息页及必要附件。</span><span class="lang-en">Attach the anonymized manuscript, author information page, and any required supplementary files in the email client that opens.</span></li>
-                <li><span class="lang-zh">研究论文建议附中英文摘要、关键词及规范化参考文献。</span><span class="lang-en">Research articles should ideally include Chinese and English abstracts, keywords, and standardized references.</span></li>
-                <li><span class="lang-zh">请在邮件主题中注明稿件标题，并随附稿件、作者信息页及其他补充材料。</span><span class="lang-en">Please state the manuscript title in the email subject line and include the manuscript, author information page, and any supplementary materials.</span></li>
+                <li><span class="lang-zh">正式投稿邮箱：`submission@ichingandcivilization.org`。</span><span class="lang-en">Official submission mailbox: `submission@ichingandcivilization.org`.</span></li>
+                <li><span class="lang-zh">请在邮件客户端中手动附加匿名稿件、作者信息页及必要附件。</span><span class="lang-en">Please attach the anonymous manuscript, author-information file, and any required supplementary materials in your email client.</span></li>
+                <li><span class="lang-zh">邮件标题建议采用“投稿—作者姓名—论文标题”格式。</span><span class="lang-en">The recommended email subject format is: “Submission – Author Name – Article Title.”</span></li>
+                <li><span class="lang-zh">录用稿件须补齐中英文标题、摘要与关键词。</span><span class="lang-en">Accepted articles must include English and Chinese titles, abstracts, and keywords.</span></li>
               </ul>
             </aside>
           </div>
@@ -330,9 +327,9 @@
       <div class="container footer-grid">
         <div class="footer-copy">
           <div class="footer-title lang-zh">作者指南</div>
-          <div class="footer-title lang-en">Author Guidelines</div>
-          <p class="lang-zh">本页汇集投稿说明、评审政策与投稿入口，供作者正式提交稿件时查阅与使用。</p>
-          <p class="lang-en">This page brings together submission instructions, review policies, and the journal’s submission entry point for formal author use.</p>
+          <div class="footer-title lang-en">For Authors</div>
+          <p class="lang-zh">本页发布《易經與文明》的正式作者指南，涵盖投稿方式、格式要求、审稿流程、学术规范、版权政策与费用说明。</p>
+          <p class="lang-en">This page publishes the formal contributor guidelines for I CHING AND CIVILIZATION, covering the submission process, manuscript preparation, review procedure, publication ethics, copyright terms, and fee policy.</p>
         </div>
         <div class="footer-links">
           <a class="pill-link" href="latest-articles.html"><span class="lang-zh">最新文章</span><span class="lang-en">Latest Articles</span></a>
@@ -341,6 +338,6 @@
       </div>
     </footer>
 
-    <script src="site.js?v=20260413-1"></script>
+    <script src="site.js?v=20260416-5"></script>
   </body>
 </html>

@@ -10,14 +10,22 @@
     />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <script>
+      try {
+        const lang = localStorage.getItem("iching_civilization_lang");
+        document.documentElement.dataset.preferredLang =
+          lang === "zh" || lang === "en" ? lang : "en";
+      } catch {
+        document.documentElement.dataset.preferredLang = "en";
+      }
+    </script>
     <link
       href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Noto+Sans+SC:wght@400;500;700&family=Noto+Serif+SC:wght@500;600;700&family=Source+Sans+3:wght@400;500;600;700&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="site.css" />
+    <link rel="stylesheet" href="site.css?v=20260416-5" />
   </head>
   <body
-    data-lang="en"
     data-title-zh="过刊浏览 | 易經與文明"
     data-title-en="Archives | I CHING AND CIVILIZATION"
   >
@@ -37,19 +45,17 @@
             <span class="brand-domain">ichingandcivilization.org</span>
           </span>
         </a>
-        <button class="menu-toggle" id="menu-toggle" type="button" aria-expanded="false" aria-controls="nav-panel">
-          <span class="lang-zh">菜单</span>
-          <span class="lang-en">Menu</span>
-        </button>
         <div class="nav-panel" id="nav-panel">
           <nav class="nav-links" aria-label="Journal Navigation">
-            <a href="index.html"><span class="lang-zh">期刊简介</span><span class="lang-en">Journal</span></a>
+            <a href="index.html"><span class="lang-zh">期刊简介</span><span class="lang-en">About</span></a>
             <a href="editorial-board.html"><span class="lang-zh">编辑委员会</span><span class="lang-en">Editorial Board</span></a>
             <a href="author-guidelines.html"><span class="lang-zh">作者指南</span><span class="lang-en">Author Guidelines</span></a>
             <a href="latest-articles.html"><span class="lang-zh">最新文章</span><span class="lang-en">Latest Articles</span></a>
             <a class="is-current" href="archives.html"><span class="lang-zh">过刊浏览</span><span class="lang-en">Archives</span></a>
           </nav>
-          <button class="lang-switch" id="lang-switch" type="button">中文</button>
+          <div class="header-actions">
+            <button class="lang-switch" id="lang-switch" type="button">中文</button>
+          </div>
         </div>
       </div>
     </header>
@@ -145,6 +151,6 @@
       </div>
     </footer>
 
-    <script src="site.js?v=20260413-1"></script>
+    <script src="site.js?v=20260416-5"></script>
   </body>
 </html>
