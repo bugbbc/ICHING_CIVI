@@ -2,44 +2,13 @@
   const body = document.body;
   const html = document.documentElement;
   const langSwitch = document.getElementById("lang-switch");
-  const langStorageKey = "iching_civilization_lang";
   const titleText = {
     zh: body.dataset.titleZh || document.title,
     en: body.dataset.titleEn || document.title,
   };
-  const submissionForms = Array.from(
-    document.querySelectorAll(".js-submission-form"),
-  );
   const articleGrid = document.querySelector(".js-article-grid");
   const articleStatus = document.querySelector("[data-article-status]");
-  const articleTypeLabels = {
-    zh: {
-      placeholder: "请选择稿件类型",
-      research: "研究论文",
-      reviewArticle: "综述论文",
-      bookReview: "书评",
-    },
-    en: {
-      placeholder: "Select manuscript type",
-      research: "Research Article",
-      reviewArticle: "Review Article",
-      bookReview: "Book Review",
-    },
-  };
-  const formMessages = {
-    invalid: {
-      zh: "请至少填写姓名、邮箱、稿件标题和摘要。",
-      en: "Please provide your name, email, manuscript title, and abstract.",
-    },
-    opened: {
-      zh: "已为你准备投稿邮件，请在弹出的邮件客户端中附上稿件文件后发送。",
-      en: "A submission draft has been prepared. Attach your manuscript file in your email client before sending.",
-    },
-    fallback: {
-      zh: "若未自动打开邮件客户端，请直接发送至 submission@ichingandcivilization.org。",
-      en: "If your email client does not open automatically, send your submission to submission@ichingandcivilization.org.",
-    },
-  };
+  const pageLinks = Array.from(document.querySelectorAll('a[href]'));
   const articleMessages = {
     loading: {
       zh: "正在加载最新文章……",
@@ -54,29 +23,6 @@
       en: "Latest articles are temporarily unavailable. Please try again later.",
     },
   };
-
-  function updatePlaceholders(lang) {
-    document
-      .querySelectorAll("[data-placeholder-zh][data-placeholder-en]")
-      .forEach((field) => {
-        const placeholder =
-          field.getAttribute(
-            lang === "zh" ? "data-placeholder-zh" : "data-placeholder-en",
-          ) || "";
-        field.setAttribute("placeholder", placeholder);
-      });
-  }
-
-  function updateSelectLabels(lang) {
-    document
-      .querySelectorAll('select[name="articleType"] option')
-      .forEach((option) => {
-        const key = option.value || "placeholder";
-        if (articleTypeLabels[lang][key]) {
-          option.textContent = articleTypeLabels[lang][key];
-        }
-      });
-  }
 
   function appendLangSpans(parent, zh, en) {
     const zhSpan = document.createElement("span");
@@ -100,19 +46,58 @@
     appendLangSpans(articleStatus, message.zh, message.en);
   }
 
-  function getStoredLanguage() {
-    try {
-      const stored = window.localStorage.getItem(langStorageKey);
-      return stored === "zh" || stored === "en" ? stored : null;
-    } catch {
-      return null;
-    }
+  function normalizeLang(value) {
+    return value === "zh" ? "zh" : "en";
   }
 
-  function storeLanguage(lang) {
-    try {
-      window.localStorage.setItem(langStorageKey, lang);
-    } catch {}
+  function getInitialLanguage() {
+    const params = new URLSearchParams(window.location.search);
+    return normalizeLang(params.get("lang"));
+  }
+
+  function isJournalPageLink(link) {
+    const href = link.getAttribute("href");
+
+    if (!href || href.startsWith("#") || href.startsWith("mailto:")) {
+      return false;
+    }
+
+    const url = new URL(href, window.location.href);
+    const isSameOrigin = url.origin === window.location.origin;
+    const isHtmlPage =
+      url.pathname.endsWith(".html") || url.pathname === "/" || url.pathname === "";
+
+    return isSameOrigin && isHtmlPage;
+  }
+
+  function updateInternalLinks(lang) {
+    pageLinks.forEach((link) => {
+      if (!isJournalPageLink(link)) {
+        return;
+      }
+
+      const url = new URL(link.getAttribute("href"), window.location.href);
+
+      if (lang === "zh") {
+        url.searchParams.set("lang", "zh");
+      } else {
+        url.searchParams.delete("lang");
+      }
+
+      link.setAttribute("href", `${url.pathname}${url.search}${url.hash}`);
+    });
+  }
+
+  function updateCurrentUrl(lang) {
+    const url = new URL(window.location.href);
+
+    if (lang === "zh") {
+      url.searchParams.set("lang", "zh");
+    } else {
+      url.searchParams.delete("lang");
+    }
+
+    window.history.replaceState({}, "", `${url.pathname}${url.search}${url.hash}`);
   }
 
   function formatArticleDate(value, locale) {
@@ -168,7 +153,7 @@
     actions.className = "article-actions";
     actions.append(
       createPillLink("刊载通知", "Publication Notice", ""),
-      createPillLink("卷期目录", "Issue Listing", ""),
+      createPillLink("卷册目录", "Volume Listing", ""),
     );
 
     card.append(meta, title, copy, actions);
@@ -261,13 +246,13 @@
 
       if (!articles.length) {
         articleGrid.replaceChildren(
-        createStateCard(
-          "暂未发布正式文章",
-          "No Published Articles Yet",
-          "本栏将在文章正式刊发后发布题名、作者、摘要与访问链接。",
-          "This section will publish titles, authors, abstracts, and access links once articles are formally released.",
-        ),
-      );
+          createStateCard(
+            "暂未发布正式文章",
+            "No Published Articles Yet",
+            "本栏将在文章正式刊发后发布题名、作者、摘要与访问链接。",
+            "This section will publish titles, authors, abstracts, and access links once articles are formally released.",
+          ),
+        );
         setArticleStatusMessage(articleMessages.empty, false);
         return;
       }
@@ -295,23 +280,21 @@
     }
   }
 
-  function setLanguage(lang, options = {}) {
-    body.dataset.lang = lang;
-    html.dataset.preferredLang = lang;
-    html.lang = lang === "zh" ? "zh-CN" : "en";
-    document.title = titleText[lang];
-    updatePlaceholders(lang);
-    updateSelectLabels(lang);
+  function setLanguage(lang) {
+    const nextLang = normalizeLang(lang);
 
-    if (options.persist !== false) {
-      storeLanguage(lang);
-    }
+    body.dataset.lang = nextLang;
+    html.dataset.preferredLang = nextLang;
+    html.lang = nextLang === "zh" ? "zh-CN" : "en";
+    document.title = titleText[nextLang];
+    updateInternalLinks(nextLang);
+    updateCurrentUrl(nextLang);
 
     if (langSwitch) {
-      langSwitch.textContent = lang === "zh" ? "EN" : "中文";
+      langSwitch.textContent = nextLang === "zh" ? "EN" : "中文";
       langSwitch.setAttribute(
         "aria-label",
-        lang === "zh" ? "Switch to English" : "切换到中文",
+        nextLang === "zh" ? "Switch to English" : "切换到中文",
       );
     }
   }
@@ -323,94 +306,6 @@
     });
   }
 
-  submissionForms.forEach((form) => {
-    const status = form.querySelector("[data-form-status]");
-    const recipient =
-      form.dataset.recipient || "submission@ichingandcivilization.org";
-
-    form.addEventListener("submit", (event) => {
-      event.preventDefault();
-
-      const lang = body.dataset.lang === "en" ? "en" : "zh";
-      const data = new FormData(form);
-      const name = String(data.get("name") || "").trim();
-      const email = String(data.get("email") || "").trim();
-      const affiliation = String(data.get("affiliation") || "").trim();
-      const manuscriptTitle = String(data.get("manuscriptTitle") || "").trim();
-      const articleType = String(data.get("articleType") || "").trim();
-      const keywords = String(data.get("keywords") || "").trim();
-      const abstract = String(data.get("abstract") || "").trim();
-      const note = String(data.get("note") || "").trim();
-
-      if (!name || !email || !manuscriptTitle || !abstract) {
-        if (status) {
-          status.textContent = formMessages.invalid[lang];
-        }
-        return;
-      }
-
-      const typeLabel = articleTypeLabels[lang][articleType] || articleType;
-      const subject =
-        lang === "zh"
-          ? `《易經與文明》投稿：${manuscriptTitle}`
-          : `Submission to I CHING AND CIVILIZATION: ${manuscriptTitle}`;
-      const lines =
-        lang === "zh"
-          ? [
-              "《易經與文明》编辑部：",
-              "",
-              "您好，以下是我的投稿信息，请查收。",
-              "",
-              `姓名：${name}`,
-              `邮箱：${email}`,
-              `机构：${affiliation || "-"}`,
-              `稿件标题：${manuscriptTitle}`,
-              `稿件类型：${typeLabel || "-"}`,
-              `关键词：${keywords || "-"}`,
-              "",
-              "摘要：",
-              abstract,
-              "",
-              "补充说明：",
-              note || "-",
-              "",
-              "我将把稿件文件作为附件一并发送。",
-            ]
-          : [
-              "To the editorial office of I CHING AND CIVILIZATION,",
-              "",
-              "Please find my submission details below.",
-              "",
-              `Name: ${name}`,
-              `Email: ${email}`,
-              `Affiliation: ${affiliation || "-"}`,
-              `Manuscript title: ${manuscriptTitle}`,
-              `Manuscript type: ${typeLabel || "-"}`,
-              `Keywords: ${keywords || "-"}`,
-              "",
-              "Abstract:",
-              abstract,
-              "",
-              "Additional note:",
-              note || "-",
-              "",
-              "I will attach the manuscript file in this email.",
-            ];
-
-      if (status) {
-        status.textContent = formMessages.opened[lang];
-      }
-
-      window.location.href = `mailto:${recipient}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(lines.join("\n"))}`;
-
-      window.setTimeout(() => {
-        if (status) {
-          status.textContent = `${formMessages.opened[lang]} ${formMessages.fallback[lang]}`;
-        }
-      }, 400);
-    });
-  });
-
-  setLanguage(getStoredLanguage() || "en", { persist: false });
+  setLanguage(getInitialLanguage());
   loadLatestArticles();
 })();

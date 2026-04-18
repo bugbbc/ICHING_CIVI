@@ -1172,58 +1172,27 @@ svg {
 }
 
 .brand-copy {
+  display: flex;
+  flex-direction: column;
+  gap: 0.18rem;
   text-align: left;
 }
 
-.brand-title.lang-zh,
-.brand-title.lang-en {
-  margin-top: 0;
+.brand-title-fixed {
+  margin: 0;
+  color: #162536;
   font-family: var(--font-serif);
-  font-weight: 700;
-  text-transform: uppercase;
-}
-
-.brand-title.lang-zh {
   font-size: clamp(1.35rem, 1.7vw, 1.75rem);
+  font-weight: 700;
   letter-spacing: 0.12em;
 }
 
-.brand-title.lang-en {
-  font-size: clamp(1.15rem, 1.4vw, 1.55rem);
-  letter-spacing: 0.16em;
-}
-
-.brand-mark {
-  display: grid;
-  align-content: center;
-  gap: 0.34rem;
-  width: 4rem;
-  height: 4rem;
-  padding: 0.8rem;
-  border: 1px solid rgba(18, 29, 43, 0.12);
-  border-radius: 0.25rem;
-  background: linear-gradient(180deg, #182738 0%, #24364b 100%);
-  box-shadow: 0 10px 20px rgba(10, 18, 28, 0.14);
-}
-
-.brand-mark span {
-  height: 0.24rem;
-  background: rgba(255, 249, 239, 0.95);
-}
-
-.brand-mark .broken::before,
-.brand-mark .broken::after {
-  background: rgba(255, 249, 239, 0.95);
-}
-
-.brand-domain {
-  display: block;
-  margin-top: 0.45rem;
+.brand-subtitle {
   color: #6d7d8f;
-  font-size: 0.8rem;
+  font-size: clamp(0.88rem, 1.08vw, 1.02rem);
   font-weight: 700;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  text-transform: none;
 }
 
 .nav-panel {
@@ -1308,31 +1277,17 @@ svg {
 }
 
 .footer {
-  padding: 2.7rem 0 3rem;
-  border-top: 1px solid rgba(255, 255, 255, 0.06);
-  background: linear-gradient(180deg, #0e1722 0%, #162839 100%);
-  color: rgba(233, 238, 243, 0.8);
+  padding: 1.35rem 0 1.6rem;
+  border-top: 1px solid rgba(22, 35, 51, 0.08);
+  background: #ffffff;
+  color: var(--muted);
 }
 
-.footer-title {
-  color: #ffffff;
-  font-size: 1.85rem;
-}
-
-.footer .pill-link {
-  border-color: rgba(178, 139, 87, 0.38);
-  background: rgba(255, 255, 255, 0.04);
-  color: rgba(245, 248, 252, 0.94);
-  box-shadow: none;
+.footer-line {
+  margin: 0;
+  text-align: center;
   font-size: 0.95rem;
-  letter-spacing: 0;
-  text-transform: none;
-}
-
-.footer .pill-link:hover {
-  border-color: rgba(178, 139, 87, 0.9);
-  background: rgba(178, 139, 87, 0.16);
-  color: #ffffff;
+  line-height: 1.6;
 }
 
 .journal-hero {
@@ -1341,7 +1296,7 @@ svg {
   background:
     radial-gradient(circle at 15% 20%, rgba(178, 139, 87, 0.22), transparent 22%),
     linear-gradient(135deg, #101923 0%, #18293b 52%, #21384d 100%);
-  padding: 8rem 0;
+  padding: 4rem 0;
 }
 
 .journal-hero::before {
@@ -1358,7 +1313,7 @@ svg {
 .journal-hero-inner {
   position: relative;
   z-index: 1;
-  min-height: 10rem;
+  min-height: 5rem;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -1368,14 +1323,14 @@ svg {
   margin: 0;
   color: #ffffff;
   font-family: var(--font-copy);
-  font-size: clamp(3rem, 5vw, 4.3rem);
+  font-size: clamp(2.35rem, 3.9vw, 3.15rem);
   font-weight: 400;
   line-height: 1.08;
   text-align: center;
 }
 
 .journal-section {
-  padding: 4.2rem 0;
+  padding: 3.8rem 0;
 }
 
 .journal-section + .journal-section {
@@ -1495,6 +1450,11 @@ svg {
   margin-bottom: 0;
 }
 
+.archive-grid-single {
+  grid-template-columns: minmax(0, 42rem);
+  justify-content: center;
+}
+
 @media (max-width: 960px) {
   .nav-wrap {
     grid-template-columns: 1fr;
@@ -1510,13 +1470,13 @@ svg {
     text-align: left;
   }
 
-  .brand-title.lang-zh {
+  .brand-title-fixed {
     font-size: 1.4rem;
   }
 
-  .brand-title.lang-en {
-    font-size: 1.1rem;
-    letter-spacing: 0.12em;
+  .brand-subtitle {
+    font-size: 0.96rem;
+    letter-spacing: 0.06em;
   }
 
   .brand-mark {
@@ -1565,13 +1525,22 @@ svg {
   }
 
   .journal-hero {
-    padding: 5.2rem 0;
+    padding: 3.3rem 0;
   }
 }
 
 @media (max-width: 640px) {
+  .brand-title-fixed {
+    font-size: 1.16rem;
+  }
+
+  .brand-subtitle {
+    font-size: 0.8rem;
+    letter-spacing: 0.04em;
+  }
+
   .journal-hero-title {
-    font-size: 2.55rem;
+    font-size: 2.15rem;
   }
 
   .journal-article h2,

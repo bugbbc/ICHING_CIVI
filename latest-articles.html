@@ -3,31 +3,27 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>最新文章 | 易經與文明</title>
+    <title>Latest Articles | Journal of I Ching and Civilization</title>
     <meta
       name="description"
-      content="《易經與文明》最新文章页面，展示当期文章结构、专题焦点与文章摘要预览。"
+      content="《易经与文明》最新文章页面，展示最新刊发文章与正式访问信息。"
     />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <script>
-      try {
-        const lang = localStorage.getItem("iching_civilization_lang");
-        document.documentElement.dataset.preferredLang =
-          lang === "zh" || lang === "en" ? lang : "en";
-      } catch {
-        document.documentElement.dataset.preferredLang = "en";
-      }
+      const initialLang = new URLSearchParams(window.location.search).get("lang");
+      document.documentElement.dataset.preferredLang =
+        initialLang === "zh" ? "zh" : "en";
     </script>
     <link
       href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Noto+Sans+SC:wght@400;500;700&family=Noto+Serif+SC:wght@500;600;700&family=Source+Sans+3:wght@400;500;600;700&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="site.css?v=20260416-5" />
+    <link rel="stylesheet" href="site.css?v=20260418-1" />
   </head>
   <body
-    data-title-zh="最新文章 | 易經與文明"
-    data-title-en="Latest Articles | I CHING AND CIVILIZATION"
+    data-title-zh="最新文章 | 易经与文明"
+    data-title-en="Latest Articles | Journal of I Ching and Civilization"
   >
     <header class="site-header">
       <div class="topline">
@@ -40,9 +36,8 @@
         <a class="brand" href="index.html" aria-label="Journal Home">
           <span class="brand-mark" aria-hidden="true"><span></span><span class="broken"></span><span></span></span>
           <span class="brand-copy">
-            <span class="brand-title lang-zh">易經與文明</span>
-            <span class="brand-title lang-en">I CHING AND CIVILIZATION</span>
-            <span class="brand-domain">ichingandcivilization.org</span>
+            <span class="brand-title-fixed">易经与文明</span>
+            <span class="brand-subtitle">Journal of I Ching and Civilization</span>
           </span>
         </a>
         <div class="nav-panel" id="nav-panel">
@@ -61,48 +56,12 @@
     </header>
 
     <main class="page-main">
-      <section class="page-hero">
-        <div class="container">
-          <div class="breadcrumb">
-            <a href="index.html"><span class="lang-zh">期刊首页</span><span class="lang-en">Journal Home</span></a>
-            <span aria-hidden="true">/</span>
+      <section class="journal-hero">
+        <div class="container journal-hero-inner">
+          <h1 class="journal-hero-title">
             <span class="lang-zh">最新文章</span>
             <span class="lang-en">Latest Articles</span>
-          </div>
-
-          <div class="hero-grid">
-            <article class="hero-copy">
-              <div class="page-kicker"><span class="lang-zh">Current Issue</span><span class="lang-en">Current Issue</span></div>
-              <h1 class="page-title"><span class="lang-zh">最新文章</span><span class="lang-en">Latest Articles</span></h1>
-              <p class="page-lead">
-                <span class="lang-zh">本页集中呈现当期与近期开载文章，发布题名、作者、摘要以及 PDF、DOI 等正式引文信息，便于检索与持续阅读。</span>
-                <span class="lang-en">This page presents current and recent journal content, publishing titles, authors, abstracts, and formal citation links such as PDFs and DOIs for continued reading and reference.</span>
-              </p>
-            </article>
-
-            <aside class="issue-panel">
-              <div class="issue-cover">
-                <div class="cover-top">
-                  <div>
-                    <div class="issue-meta"><span class="lang-zh">當期聚焦</span><span class="lang-en">Issue Focus</span></div>
-                    <div class="cover-title"><span class="lang-zh">文本<br />与解释</span><span class="lang-en">Text<br />and Interpretation</span></div>
-                    <div class="cover-subtitle"><span class="lang-zh">本期内容聚焦《周易》的文本基础、经典互证与跨文明解释路径。</span><span class="lang-en">The current volume focuses on textual foundations, classical comparison, and cross-civilizational interpretation of the Zhouyi.</span></div>
-                  </div>
-                  <div class="journal-badge">V1</div>
-                </div>
-                <div class="cover-lines" aria-hidden="true">
-                  <span></span>
-                  <span></span>
-                  <span class="broken"></span>
-                </div>
-              </div>
-              <ul class="issue-list">
-                <li><span class="lang-zh">板块一：出土文献与文本形成史。</span><span class="lang-en">Section I: excavated manuscripts and textual formation.</span></li>
-                <li><span class="lang-zh">板块二：经典互证与制度思想。</span><span class="lang-en">Section II: classical comparison and institutional thought.</span></li>
-                <li><span class="lang-zh">板块三：海外译介与接受史。</span><span class="lang-en">Section III: translation and global reception history.</span></li>
-              </ul>
-            </aside>
-          </div>
+          </h1>
         </div>
       </section>
 
@@ -110,12 +69,12 @@
         <div class="container">
           <div class="section-head">
             <div>
-              <div class="section-tag"><span class="lang-zh">Articles</span><span class="lang-en">Articles</span></div>
-              <h2 class="section-title"><span class="lang-zh">最新上线文章</span><span class="lang-en">Latest Published Articles</span></h2>
+              <div class="section-tag"><span class="lang-zh">Volume 1</span><span class="lang-en">Volume 1</span></div>
+              <h2 class="section-title"><span class="lang-zh">2027年第一卷</span><span class="lang-en">Volume 1 (2027)</span></h2>
             </div>
             <p class="section-copy">
-              <span class="lang-zh">本栏按卷期与栏目持续呈现最新刊发文章，提供题名、作者、摘要与正式访问入口。</span>
-              <span class="lang-en">This section presents the latest published articles by issue and section, with titles, authors, abstracts, and formal access links.</span>
+              <span class="lang-zh">本栏持续发布《易经与文明》2027年第一卷最新刊发文章，提供题名、作者、摘要与正式访问入口。</span>
+              <span class="lang-en">This section presents the latest published articles in Volume 1 (2027) of the Journal of I Ching and Civilization, with titles, authors, abstracts, and formal access links.</span>
             </p>
           </div>
 
@@ -129,20 +88,14 @@
     </main>
 
     <footer class="footer">
-      <div class="container footer-grid">
-        <div class="footer-copy">
-          <div class="footer-title lang-zh">最新文章</div>
-          <div class="footer-title lang-en">Latest Articles</div>
-          <p class="lang-zh">本页持续发布本刊最新文章目录、摘要与访问链接，供研究者及时查阅与引用。</p>
-          <p class="lang-en">This page publishes the journal’s latest tables of contents, abstracts, and access links for timely scholarly reading and citation.</p>
-        </div>
-        <div class="footer-links">
-          <a class="pill-link" href="author-guidelines.html"><span class="lang-zh">我要投稿</span><span class="lang-en">Submit Work</span></a>
-          <a class="pill-link" href="archives.html"><span class="lang-zh">查看过刊</span><span class="lang-en">Browse Archives</span></a>
-        </div>
+      <div class="container">
+        <p class="footer-line">
+          <span class="lang-zh">© 2027 易经文明研究院</span>
+          <span class="lang-en">© 2027 I Ching Civilization Institute Limited</span>
+        </p>
       </div>
     </footer>
 
-    <script src="site.js?v=20260416-5"></script>
+    <script src="site.js?v=20260418-2"></script>
   </body>
 </html>

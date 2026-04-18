@@ -3,31 +3,27 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>编辑委员会 | 易經與文明</title>
+    <title>Editorial Board | Journal of I Ching and Civilization</title>
     <meta
       name="description"
-      content="《易經與文明》编辑委员会页面，展示本刊正式编委名单与编辑治理信息。"
+      content="《易经与文明》编辑委员会页面，展示本刊正式编委名单与编辑治理信息。"
     />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <script>
-      try {
-        const lang = localStorage.getItem("iching_civilization_lang");
-        document.documentElement.dataset.preferredLang =
-          lang === "zh" || lang === "en" ? lang : "en";
-      } catch {
-        document.documentElement.dataset.preferredLang = "en";
-      }
+      const initialLang = new URLSearchParams(window.location.search).get("lang");
+      document.documentElement.dataset.preferredLang =
+        initialLang === "zh" ? "zh" : "en";
     </script>
     <link
       href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Noto+Sans+SC:wght@400;500;700&family=Noto+Serif+SC:wght@500;600;700&family=Source+Sans+3:wght@400;500;600;700&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="site.css?v=20260416-5" />
+    <link rel="stylesheet" href="site.css?v=20260418-1" />
   </head>
   <body
-    data-title-zh="编辑委员会 | 易經與文明"
-    data-title-en="Editorial Board | I CHING AND CIVILIZATION"
+    data-title-zh="编辑委员会 | 易经与文明"
+    data-title-en="Editorial Board | Journal of I Ching and Civilization"
   >
     <header class="site-header">
       <div class="topline">
@@ -40,9 +36,8 @@
         <a class="brand" href="index.html" aria-label="Journal Home">
           <span class="brand-mark" aria-hidden="true"><span></span><span class="broken"></span><span></span></span>
           <span class="brand-copy">
-            <span class="brand-title lang-zh">易經與文明</span>
-            <span class="brand-title lang-en">I CHING AND CIVILIZATION</span>
-            <span class="brand-domain">ichingandcivilization.org</span>
+            <span class="brand-title-fixed">易经与文明</span>
+            <span class="brand-subtitle">Journal of I Ching and Civilization</span>
           </span>
         </a>
         <div class="nav-panel" id="nav-panel">
@@ -78,8 +73,8 @@
               <span class="lang-en">Editorial Board</span>
             </h2>
             <p>
-              <span class="lang-zh">本页公布《易經與文明》的正式编委名单。编辑委员会负责维护本刊的学术方向、审稿标准与出版质量。</span>
-              <span class="lang-en">This page publishes the formal editorial appointments of I CHING AND CIVILIZATION. The editorial board is responsible for maintaining the journal’s scholarly direction, review standards, and publication quality.</span>
+              <span class="lang-zh">本页公布《易经与文明》的正式编委名单。编辑委员会负责维护本刊的学术方向、审稿标准与出版质量。</span>
+              <span class="lang-en">This page publishes the formal editorial appointments of the Journal of I Ching and Civilization. The editorial board is responsible for maintaining the journal’s scholarly direction, review standards, and publication quality.</span>
             </p>
             <p>
               <span class="lang-zh">本刊采取同行评议制度，编委会在稿件遴选、匿名评审组织与学术把关方面承担核心职责。</span>
@@ -181,20 +176,14 @@
     </main>
 
     <footer class="footer">
-      <div class="container footer-grid">
-        <div class="footer-copy">
-          <div class="footer-title lang-zh">编辑委员会</div>
-          <div class="footer-title lang-en">Editorial Board</div>
-          <p class="lang-zh">本页公布《易經與文明》的正式编辑委员会名单，作为本刊学术治理与出版质量控制的重要信息。</p>
-          <p class="lang-en">This page publishes the formal editorial board of I CHING AND CIVILIZATION as part of the journal’s academic governance and publication record.</p>
-        </div>
-        <div class="footer-links">
-          <a class="pill-link" href="author-guidelines.html"><span class="lang-zh">作者指南</span><span class="lang-en">For Authors</span></a>
-          <a class="pill-link" href="latest-articles.html"><span class="lang-zh">最新文章</span><span class="lang-en">Articles</span></a>
-        </div>
+      <div class="container">
+        <p class="footer-line">
+          <span class="lang-zh">© 2027 易经文明研究院</span>
+          <span class="lang-en">© 2027 I Ching Civilization Institute Limited</span>
+        </p>
       </div>
     </footer>
 
-    <script src="site.js?v=20260416-5"></script>
+    <script src="site.js?v=20260418-2"></script>
   </body>
 </html>

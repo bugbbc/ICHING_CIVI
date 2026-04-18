@@ -3,31 +3,27 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>过刊浏览 | 易經與文明</title>
+    <title>Archives | Journal of I Ching and Civilization</title>
     <meta
       name="description"
-      content="《易經與文明》过刊浏览页面，展示卷期结构、专题方向与归档布局。"
+      content="《易经与文明》过刊浏览页面，展示本刊年度卷册归档信息。"
     />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <script>
-      try {
-        const lang = localStorage.getItem("iching_civilization_lang");
-        document.documentElement.dataset.preferredLang =
-          lang === "zh" || lang === "en" ? lang : "en";
-      } catch {
-        document.documentElement.dataset.preferredLang = "en";
-      }
+      const initialLang = new URLSearchParams(window.location.search).get("lang");
+      document.documentElement.dataset.preferredLang =
+        initialLang === "zh" ? "zh" : "en";
     </script>
     <link
       href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Noto+Sans+SC:wght@400;500;700&family=Noto+Serif+SC:wght@500;600;700&family=Source+Sans+3:wght@400;500;600;700&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="site.css?v=20260416-5" />
+    <link rel="stylesheet" href="site.css?v=20260418-1" />
   </head>
   <body
-    data-title-zh="过刊浏览 | 易經與文明"
-    data-title-en="Archives | I CHING AND CIVILIZATION"
+    data-title-zh="过刊浏览 | 易经与文明"
+    data-title-en="Archives | Journal of I Ching and Civilization"
   >
     <header class="site-header">
       <div class="topline">
@@ -40,9 +36,8 @@
         <a class="brand" href="index.html" aria-label="Journal Home">
           <span class="brand-mark" aria-hidden="true"><span></span><span class="broken"></span><span></span></span>
           <span class="brand-copy">
-            <span class="brand-title lang-zh">易經與文明</span>
-            <span class="brand-title lang-en">I CHING AND CIVILIZATION</span>
-            <span class="brand-domain">ichingandcivilization.org</span>
+            <span class="brand-title-fixed">易经与文明</span>
+            <span class="brand-subtitle">Journal of I Ching and Civilization</span>
           </span>
         </a>
         <div class="nav-panel" id="nav-panel">
@@ -61,35 +56,12 @@
     </header>
 
     <main class="page-main">
-      <section class="page-hero">
-        <div class="container">
-          <div class="breadcrumb">
-            <a href="index.html"><span class="lang-zh">期刊首页</span><span class="lang-en">Journal Home</span></a>
-            <span aria-hidden="true">/</span>
+      <section class="journal-hero">
+        <div class="container journal-hero-inner">
+          <h1 class="journal-hero-title">
             <span class="lang-zh">过刊浏览</span>
             <span class="lang-en">Archives</span>
-          </div>
-
-          <div class="hero-grid">
-            <article class="hero-copy">
-              <div class="page-kicker"><span class="lang-zh">Archive</span><span class="lang-en">Archive</span></div>
-              <h1 class="page-title"><span class="lang-zh">过刊浏览</span><span class="lang-en">Archives</span></h1>
-              <p class="page-lead">
-                <span class="lang-zh">本页按年度、卷期与专题组织过刊目录，便于读者系统浏览已刊文章、专题结构与学术发展脉络。</span>
-                <span class="lang-en">This page organizes the journal archive by year, volume, issue, and dossier so that readers may browse published contents and thematic developments systematically.</span>
-              </p>
-            </article>
-
-            <aside class="issue-panel">
-              <div class="section-tag"><span class="lang-zh">Archive Design</span><span class="lang-en">Archive Design</span></div>
-              <h3><span class="lang-zh">卷期与专题双重浏览</span><span class="lang-en">By Issue and by Dossier</span></h3>
-              <ul class="issue-list">
-                <li><span class="lang-zh">可按年份、卷期和专题浏览内容。</span><span class="lang-en">Content can be browsed by year, volume, issue, and dossier.</span></li>
-                <li><span class="lang-zh">每期可挂目录、摘要、封面、PDF 与 DOI 信息。</span><span class="lang-en">Each issue can host a table of contents, abstracts, cover image, PDFs, and DOI data.</span></li>
-                <li><span class="lang-zh">档案页面可结合作者索引、关键词索引与专题标签形成稳定检索体系。</span><span class="lang-en">The archive may be integrated with author indexes, keyword indexes, and dossier tags to support stable discovery.</span></li>
-              </ul>
-            </aside>
-          </div>
+          </h1>
         </div>
       </section>
 
@@ -97,39 +69,21 @@
         <div class="container">
           <div class="section-head">
             <div>
-              <div class="section-tag"><span class="lang-zh">Issues</span><span class="lang-en">Issues</span></div>
-              <h2 class="section-title"><span class="lang-zh">卷期档案结构</span><span class="lang-en">Issue Archive Structure</span></h2>
+              <div class="section-tag"><span class="lang-zh">Volume Archive</span><span class="lang-en">Volume Archive</span></div>
+              <h2 class="section-title"><span class="lang-zh">2027年第一卷</span><span class="lang-en">Volume 1 (2027)</span></h2>
             </div>
             <p class="section-copy">
-              <span class="lang-zh">这里按卷期发布正式目录、摘要、封面与链接信息，形成稳定的期刊归档页面。</span>
-              <span class="lang-en">This section presents the journal’s archival structure, where each issue may publish formal contents, abstracts, cover data, and reference links.</span>
+              <span class="lang-zh">本刊目前为年刊，一年一卷。当前归档页展示 2027 年第一卷的正式目录与说明。</span>
+              <span class="lang-en">The journal is currently published annually, with one volume each year. The archive presently displays the formal record for Volume 1 (2027).</span>
             </p>
           </div>
 
-          <div class="archive-grid">
-            <article class="issue-card">
-              <span class="archive-year">2026</span>
-              <h3><span class="lang-zh">第一卷第一期</span><span class="lang-en">Vol. 1 No. 1</span></h3>
-              <p><span class="lang-zh">聚焦《周易》文本形成史、帛书与简帛材料、海外接受史的重新梳理。</span><span class="lang-en">Focuses on Zhouyi textual formation, manuscript materials, and renewed accounts of global reception history.</span></p>
-              <div class="issue-actions"><span class="pill-link"><span class="lang-zh">目录结构</span><span class="lang-en">Table of Contents</span></span><span class="pill-link"><span class="lang-zh">摘要预览</span><span class="lang-en">Abstract Preview</span></span></div>
-            </article>
-            <article class="issue-card">
-              <span class="archive-year">2026</span>
-              <h3><span class="lang-zh">第一卷第二期</span><span class="lang-en">Vol. 1 No. 2</span></h3>
-              <p><span class="lang-zh">专题聚焦《周易》与《尚书》《诗经》《黄帝内经》的经典互证关系。</span><span class="lang-en">This issue concentrates on the Zhouyi in relation to the Shangshu, the Shijing, and the Huangdi Neijing.</span></p>
-              <div class="issue-actions"><span class="pill-link"><span class="lang-zh">专题目录</span><span class="lang-en">Dossier Outline</span></span><span class="pill-link"><span class="lang-zh">封面位</span><span class="lang-en">Cover Slot</span></span></div>
-            </article>
+          <div class="archive-grid archive-grid-single">
             <article class="issue-card">
               <span class="archive-year">2027</span>
-              <h3><span class="lang-zh">第二卷第一期</span><span class="lang-en">Vol. 2 No. 1</span></h3>
-              <p><span class="lang-zh">专题延伸至自然法传统、荣格心理学与现代诠释框架中的《易》学讨论。</span><span class="lang-en">Extends the archive toward natural law traditions, Jungian psychology, and modern frameworks of interpretation.</span></p>
-              <div class="issue-actions"><span class="pill-link"><span class="lang-zh">目录结构</span><span class="lang-en">Table of Contents</span></span><span class="pill-link"><span class="lang-zh">国际专题</span><span class="lang-en">Global Dossier</span></span></div>
-            </article>
-            <article class="issue-card">
-              <span class="archive-year">2027</span>
-              <h3><span class="lang-zh">第二卷第二期</span><span class="lang-en">Vol. 2 No. 2</span></h3>
-              <p><span class="lang-zh">可设置为书评专栏、资料整理专辑或会议论文精选卷期，形成多样化的年度栏目布局。</span><span class="lang-en">May be organized as a review forum, source-material dossier, or selected conference issue, contributing to a diverse annual publication structure.</span></p>
-              <div class="issue-actions"><span class="pill-link"><span class="lang-zh">书评专栏</span><span class="lang-en">Review Forum</span></span><span class="pill-link"><span class="lang-zh">会议论文</span><span class="lang-en">Conference Papers</span></span></div>
+              <h3><span class="lang-zh">2027年第一卷</span><span class="lang-en">Volume 1 (2027)</span></h3>
+              <p><span class="lang-zh">本卷集中呈现《周易》文本形成史、出土文献、经典互证、制度思想、海外译介与接受史等研究，也可纳入自然法传统、荣格心理学、现代诠释框架下的比较研究，以及书评、资料整理和会议论文等栏目内容。</span><span class="lang-en">This volume gathers research on Zhouyi textual formation, excavated manuscripts, classical comparison, institutional thought, translation, and reception history. It may also include comparative work on natural law traditions, Jungian psychology, and modern interpretive frameworks, together with book reviews, source-material dossiers, and selected conference papers.</span></p>
+              <div class="issue-actions"><span class="pill-link"><span class="lang-zh">目录结构</span><span class="lang-en">Table of Contents</span></span><span class="pill-link"><span class="lang-zh">卷册说明</span><span class="lang-en">Volume Overview</span></span></div>
             </article>
           </div>
         </div>
@@ -137,20 +91,14 @@
     </main>
 
     <footer class="footer">
-      <div class="container footer-grid">
-        <div class="footer-copy">
-          <div class="footer-title lang-zh">过刊浏览</div>
-          <div class="footer-title lang-en">Archives</div>
-          <p class="lang-zh">本页按卷期、专题与年度组织过刊目录，供读者系统查阅已刊内容与研究脉络。</p>
-          <p class="lang-en">This page organizes the archive by issue, dossier, and year for systematic access to published contents and research trajectories.</p>
-        </div>
-        <div class="footer-links">
-          <a class="pill-link" href="latest-articles.html"><span class="lang-zh">查看当期</span><span class="lang-en">Current Issue</span></a>
-          <a class="pill-link" href="author-guidelines.html"><span class="lang-zh">提交稿件</span><span class="lang-en">Submit Work</span></a>
-        </div>
+      <div class="container">
+        <p class="footer-line">
+          <span class="lang-zh">© 2027 易经文明研究院</span>
+          <span class="lang-en">© 2027 I Ching Civilization Institute Limited</span>
+        </p>
       </div>
     </footer>
 
-    <script src="site.js?v=20260416-5"></script>
+    <script src="site.js?v=20260418-2"></script>
   </body>
 </html>
