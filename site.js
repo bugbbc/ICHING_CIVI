@@ -8,6 +8,8 @@
   };
   const articleGrid = document.querySelector(".js-article-grid");
   const articleStatus = document.querySelector("[data-article-status]");
+  const archiveDirectory = document.querySelector(".js-archive-directory");
+  const archiveStatus = document.querySelector("[data-archive-status]");
   const pageLinks = Array.from(document.querySelectorAll('a[href]'));
   const articleMessages = {
     loading: {
@@ -23,6 +25,20 @@
       en: "Latest articles are temporarily unavailable. Please try again later.",
     },
   };
+  const archiveMessages = {
+    loading: {
+      zh: "正在加载第一卷目录……",
+      en: "Loading the Volume 1 table of contents...",
+    },
+    empty: {
+      zh: "第一卷目录暂未发布。",
+      en: "The Volume 1 table of contents has not been published yet.",
+    },
+    error: {
+      zh: "第一卷目录暂时无法显示，请稍后再试。",
+      en: "The Volume 1 table of contents is temporarily unavailable. Please try again later.",
+    },
+  };
 
   function appendLangSpans(parent, zh, en) {
     const zhSpan = document.createElement("span");
@@ -36,14 +52,22 @@
     parent.append(zhSpan, enSpan);
   }
 
-  function setArticleStatusMessage(message, isError) {
-    if (!articleStatus) {
+  function setStatusMessage(node, message, isError) {
+    if (!node) {
       return;
     }
 
-    articleStatus.classList.toggle("is-error", Boolean(isError));
-    articleStatus.replaceChildren();
-    appendLangSpans(articleStatus, message.zh, message.en);
+    node.classList.toggle("is-error", Boolean(isError));
+    node.replaceChildren();
+    appendLangSpans(node, message.zh, message.en);
+  }
+
+  function setArticleStatusMessage(message, isError) {
+    setStatusMessage(articleStatus, message, isError);
+  }
+
+  function setArchiveStatusMessage(message, isError) {
+    setStatusMessage(archiveStatus, message, isError);
   }
 
   function normalizeLang(value) {
@@ -117,6 +141,16 @@
     }).format(date);
   }
 
+  function excerptText(value, maxLength) {
+    const text = String(value || "").trim();
+
+    if (!text || text.length <= maxLength) {
+      return text;
+    }
+
+    return `${text.slice(0, maxLength).trimEnd()}...`;
+  }
+
   function createPillLink(labelZh, labelEn, href) {
     const element = href
       ? document.createElement("a")
@@ -157,6 +191,37 @@
     );
 
     card.append(meta, title, copy, actions);
+    return card;
+  }
+
+  function createArchiveStateCard(titleZh, titleEn, copyZh, copyEn) {
+    const card = document.createElement("article");
+    card.className = "archive-entry archive-entry-empty";
+
+    const body = document.createElement("div");
+    body.className = "archive-entry-body";
+
+    const meta = document.createElement("p");
+    meta.className = "archive-entry-meta";
+    appendLangSpans(meta, "Volume 1", "Volume 1");
+
+    const title = document.createElement("h3");
+    title.className = "archive-entry-title";
+    appendLangSpans(title, titleZh, titleEn);
+
+    const copy = document.createElement("p");
+    copy.className = "archive-entry-summary";
+    appendLangSpans(copy, copyZh, copyEn);
+
+    const actions = document.createElement("div");
+    actions.className = "archive-entry-actions";
+    actions.append(
+      createPillLink("卷册说明", "Volume Overview", ""),
+      createPillLink("作者指南", "Author Guidelines", "author-guidelines.html"),
+    );
+
+    body.append(meta, title, copy, actions);
+    card.append(body);
     return card;
   }
 
@@ -223,60 +288,239 @@
     return card;
   }
 
-  async function loadLatestArticles() {
-    if (!articleGrid || !articleStatus) {
+  function renderArchiveEntry(article, index) {
+    const entry = document.createElement("article");
+    entry.className = "archive-entry";
+
+    const entryNumber = document.createElement("div");
+    entryNumber.className = "archive-entry-number";
+    entryNumber.textContent = String(index + 1).padStart(2, "0");
+
+    const body = document.createElement("div");
+    body.className = "archive-entry-body";
+
+    const head = document.createElement("div");
+    head.className = "archive-entry-head";
+
+    const heading = document.createElement("div");
+
+    const meta = document.createElement("p");
+    meta.className = "archive-entry-meta";
+    appendLangSpans(
+      meta,
+      `${article.categoryZh || article.categoryEn || "研究论文"} · ${article.issueLabelZh || article.issueLabelEn || "2027年第一卷"}`,
+      `${article.categoryEn || article.categoryZh || "Research Article"} · ${article.issueLabelEn || article.issueLabelZh || "Volume 1 (2027)"}`,
+    );
+
+    const title = document.createElement("h3");
+    title.className = "archive-entry-title";
+    appendLangSpans(
+      title,
+      article.titleZh || article.titleEn || "未命名文章",
+      article.titleEn || article.titleZh || "Untitled Article",
+    );
+
+    const byline = document.createElement("p");
+    byline.className = "archive-entry-author";
+    appendLangSpans(
+      byline,
+      article.authorZh || article.authorEn || "",
+      article.authorEn || article.authorZh || "",
+    );
+
+    const dateLine = document.createElement("p");
+    dateLine.className = "archive-entry-date";
+    appendLangSpans(
+      dateLine,
+      formatArticleDate(article.publishedAt, "zh-CN"),
+      formatArticleDate(article.publishedAt, "en-US"),
+    );
+
+    heading.append(meta, title);
+    if (article.authorZh || article.authorEn) {
+      heading.append(byline);
+    }
+    if (article.publishedAt) {
+      heading.append(dateLine);
+    }
+
+    const actions = document.createElement("div");
+    actions.className = "archive-entry-actions";
+    actions.append(
+      createPillLink(
+        article.pdfUrl ? "查看 PDF" : "PDF 未提供",
+        article.pdfUrl ? "View PDF" : "PDF Unavailable",
+        article.pdfUrl || "",
+      ),
+      createPillLink(
+        article.issueLabelZh || article.issueLabelEn || "2027年第一卷",
+        article.issueLabelEn || article.issueLabelZh || "Volume 1 (2027)",
+        "",
+      ),
+    );
+
+    const summary = document.createElement("p");
+    summary.className = "archive-entry-summary";
+    appendLangSpans(
+      summary,
+      excerptText(article.abstractZh || article.abstractEn || "", 240),
+      excerptText(article.abstractEn || article.abstractZh || "", 240),
+    );
+
+    head.append(heading, actions);
+    body.append(head, summary);
+    entry.append(entryNumber, body);
+    return entry;
+  }
+
+  function sortArticles(articles) {
+    return [...articles].sort((left, right) => {
+      const leftTime = Date.parse(left.publishedAt || "");
+      const rightTime = Date.parse(right.publishedAt || "");
+
+      if (Number.isNaN(leftTime) || Number.isNaN(rightTime)) {
+        return String(left.titleEn || left.titleZh || "").localeCompare(
+          String(right.titleEn || right.titleZh || ""),
+        );
+      }
+
+      return rightTime - leftTime;
+    });
+  }
+
+  async function requestArticleSource(url) {
+    const response = await fetch(url, {
+      headers: {
+        Accept: "application/json",
+      },
+    });
+
+    if (!response.ok) {
+      throw new Error(`Unexpected status ${response.status} for ${url}`);
+    }
+
+    const payload = await response.json();
+    return Array.isArray(payload.articles) ? payload.articles : [];
+  }
+
+  async function getArticleCollection() {
+    const sources = ["/api/articles?limit=12", "/articles.json"];
+    let sawSuccess = false;
+    let lastError = null;
+
+    for (const source of sources) {
+      try {
+        const articles = await requestArticleSource(source);
+        sawSuccess = true;
+
+        if (articles.length) {
+          return sortArticles(articles);
+        }
+      } catch (error) {
+        lastError = error;
+      }
+    }
+
+    if (lastError && !sawSuccess) {
+      throw lastError;
+    }
+
+    return [];
+  }
+
+  async function loadArticleCollections() {
+    if (!articleGrid && !archiveDirectory) {
       return;
     }
 
-    setArticleStatusMessage(articleMessages.loading, false);
+    if (articleGrid) {
+      setArticleStatusMessage(articleMessages.loading, false);
+    }
+
+    if (archiveDirectory) {
+      setArchiveStatusMessage(archiveMessages.loading, false);
+    }
 
     try {
-      const response = await fetch("/api/articles?limit=12", {
-        headers: {
-          Accept: "application/json",
-        },
-      });
-
-      if (!response.ok) {
-        throw new Error(`Unexpected status ${response.status}`);
-      }
-
-      const payload = await response.json();
-      const articles = Array.isArray(payload.articles) ? payload.articles : [];
+      const articles = await getArticleCollection();
 
       if (!articles.length) {
-        articleGrid.replaceChildren(
-          createStateCard(
-            "暂未发布正式文章",
-            "No Published Articles Yet",
-            "本栏将在文章正式刊发后发布题名、作者、摘要与访问链接。",
-            "This section will publish titles, authors, abstracts, and access links once articles are formally released.",
-          ),
-        );
+        if (articleGrid) {
+          articleGrid.replaceChildren(
+            createStateCard(
+              "暂未发布正式文章",
+              "No Published Articles Yet",
+              "本栏将在文章正式刊发后发布题名、作者、摘要与访问链接。",
+              "This section will publish titles, authors, abstracts, and access links once articles are formally released.",
+            ),
+          );
+        }
+
+        if (archiveDirectory) {
+          archiveDirectory.replaceChildren(
+            createArchiveStateCard(
+              "第一卷目录暂未发布",
+              "The Volume 1 Contents Are Not Yet Published",
+              "卷内目录将在文章正式上线后列出题名、作者、摘要与 PDF 访问入口。",
+              "The volume directory will list titles, authors, abstracts, and PDF access links once the articles are formally published.",
+            ),
+          );
+        }
+
         setArticleStatusMessage(articleMessages.empty, false);
+        setArchiveStatusMessage(archiveMessages.empty, false);
         return;
       }
 
-      articleGrid.replaceChildren(
-        ...articles.map((article) => renderArticleCard(article)),
-      );
-      setArticleStatusMessage(
-        {
-          zh: `已载入 ${articles.length} 篇最新文章。`,
-          en: `Loaded ${articles.length} latest articles.`,
-        },
-        false,
-      );
+      if (articleGrid) {
+        articleGrid.replaceChildren(
+          ...articles.map((article) => renderArticleCard(article)),
+        );
+        setArticleStatusMessage(
+          {
+            zh: `已载入 ${articles.length} 篇最新文章。`,
+            en: `Loaded ${articles.length} latest articles.`,
+          },
+          false,
+        );
+      }
+
+      if (archiveDirectory) {
+        archiveDirectory.replaceChildren(
+          ...articles.map((article, index) => renderArchiveEntry(article, index)),
+        );
+        setArchiveStatusMessage(
+          {
+            zh: `已载入第一卷 ${articles.length} 篇文章。`,
+            en: `Loaded ${articles.length} articles for Volume 1.`,
+          },
+          false,
+        );
+      }
     } catch (error) {
-      articleGrid.replaceChildren(
-        createStateCard(
-          "文章列表暂时不可用",
-          "Article List Temporarily Unavailable",
-          "当前文章目录正在更新中，请稍后刷新页面，或先浏览过刊目录与作者指南。",
-          "The article list is currently being updated. Please refresh later, or browse the archives and author guidelines in the meantime.",
-        ),
-      );
-      setArticleStatusMessage(articleMessages.error, true);
+      if (articleGrid) {
+        articleGrid.replaceChildren(
+          createStateCard(
+            "文章列表暂时不可用",
+            "Article List Temporarily Unavailable",
+            "当前文章目录正在更新中，请稍后刷新页面，或先浏览过刊目录与作者指南。",
+            "The article list is currently being updated. Please refresh later, or browse the archives and author guidelines in the meantime.",
+          ),
+        );
+        setArticleStatusMessage(articleMessages.error, true);
+      }
+
+      if (archiveDirectory) {
+        archiveDirectory.replaceChildren(
+          createArchiveStateCard(
+            "第一卷目录暂时不可用",
+            "The Volume 1 Table of Contents Is Temporarily Unavailable",
+            "当前目录正在更新中，请稍后刷新页面，或先浏览最新文章与作者指南。",
+            "The directory is currently being updated. Please refresh later, or browse the latest articles and author guidelines in the meantime.",
+          ),
+        );
+        setArchiveStatusMessage(archiveMessages.error, true);
+      }
     }
   }
 
@@ -307,5 +551,5 @@
   }
 
   setLanguage(getInitialLanguage());
-  loadLatestArticles();
+  loadArticleCollections();
 })();

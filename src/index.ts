@@ -34,6 +34,131 @@ interface ArticleRecord {
   updatedAt: string;
 }
 
+const SEEDED_ARTICLES: ArticleRecord[] = [
+  {
+    slug: "sun-and-yi",
+    categoryZh: "研究论文",
+    categoryEn: "Research Article",
+    titleZh: "The Way of Sun and Yi in the Zhouyi and Wilson’s Administration",
+    titleEn: "The Way of Sun and Yi in the Zhouyi and Wilson’s Administration",
+    authorZh: "Zhang Ruoshui (Peking University)",
+    authorEn: "Zhang Ruoshui (Peking University)",
+    abstractZh:
+      "The Sun and Yi hexagrams in the Zhouyi discuss the relationship of loss and gain between the ruler above and the people below. When the ruler diminishes the people below and augments himself, this is in fact to augment the people below. Therefore, diminishing the people must be moderated: what is taken from the people must be used for the people. Only by bestowing benefits upon the people can one win the hearts of the people.",
+    abstractEn:
+      "The Sun and Yi hexagrams in the Zhouyi discuss the relationship of loss and gain between the ruler above and the people below. When the ruler diminishes the people below and augments himself, this is in fact to augment the people below. Therefore, diminishing the people must be moderated: what is taken from the people must be used for the people. Only by bestowing benefits upon the people can one win the hearts of the people.",
+    issueLabelZh: "2027年第一卷",
+    issueLabelEn: "Volume 1 (2027)",
+    pdfUrl: "/papers/sun-and-yi.pdf",
+    doiUrl: "",
+    publishedAt: "2027-01-06T00:00:00.000Z",
+    createdAt: "2027-01-06T00:00:00.000Z",
+    updatedAt: "2027-01-06T00:00:00.000Z",
+  },
+  {
+    slug: "qian-shihe-and-zhongfu",
+    categoryZh: "研究论文",
+    categoryEn: "Research Article",
+    titleZh:
+      "On the Similarities between the Hexagrams Qian, Shihe, and Zhongfu in the Book of Changes and Modern Rule of Law Thought",
+    titleEn:
+      "On the Similarities between the Hexagrams Qian, Shihe, and Zhongfu in the Book of Changes and Modern Rule of Law Thought",
+    authorZh: "Zhang Yuanhe (Shanghai Ocean University)",
+    authorEn: "Zhang Yuanhe (Shanghai Ocean University)",
+    abstractZh:
+      "Through the elucidation of the hexagrams Qian, Shihe, and Zhongfu in the Book of Changes, as well as an overview of modern rule of law thought, it is found that these hexagrams share commonalities with modern rule of law principles. Connecting the hexagrams of the Book of Changes with modern rule of law thought has enlightening significance for the current construction of the rule of law.",
+    abstractEn:
+      "Through the elucidation of the hexagrams Qian, Shihe, and Zhongfu in the Book of Changes, as well as an overview of modern rule of law thought, it is found that these hexagrams share commonalities with modern rule of law principles. Connecting the hexagrams of the Book of Changes with modern rule of law thought has enlightening significance for the current construction of the rule of law.",
+    issueLabelZh: "2027年第一卷",
+    issueLabelEn: "Volume 1 (2027)",
+    pdfUrl: "/papers/qian-shihe-and-zhongfu.pdf",
+    doiUrl: "",
+    publishedAt: "2027-01-05T00:00:00.000Z",
+    createdAt: "2027-01-05T00:00:00.000Z",
+    updatedAt: "2027-01-05T00:00:00.000Z",
+  },
+  {
+    slug: "tai-and-pi",
+    categoryZh: "研究论文",
+    categoryEn: "Research Article",
+    titleZh: "The Law of Tai and Pi in the Zhouyi and the Road of Western Democracy",
+    titleEn: "The Law of Tai and Pi in the Zhouyi and the Road of Western Democracy",
+    authorZh: "Wen Ruyu (Hebei University)",
+    authorEn: "Wen Ruyu (Hebei University)",
+    abstractZh:
+      "The natural law contained in the Tai and Pi hexagrams of the Zhouyi is that the root cause of a nation’s order or chaos lies in whether the ruler respects God and benefits the people. Germany and the United States are two important countries with different traditions, and their rise and decline before and after World War II fully conform to the law of Tai and Pi.",
+    abstractEn:
+      "The natural law contained in the Tai and Pi hexagrams of the Zhouyi is that the root cause of a nation’s order or chaos lies in whether the ruler respects God and benefits the people. Germany and the United States are two important countries with different traditions, and their rise and decline before and after World War II fully conform to the law of Tai and Pi.",
+    issueLabelZh: "2027年第一卷",
+    issueLabelEn: "Volume 1 (2027)",
+    pdfUrl: "/papers/tai-and-pi.pdf",
+    doiUrl: "",
+    publishedAt: "2027-01-04T00:00:00.000Z",
+    createdAt: "2027-01-04T00:00:00.000Z",
+    updatedAt: "2027-01-04T00:00:00.000Z",
+  },
+  {
+    slug: "kun",
+    categoryZh: "研究论文",
+    categoryEn: "Research Article",
+    titleZh: "The Right-Thought in the Kun Hexagram of the Zhouyi",
+    titleEn: "The Right-Thought in the Kun Hexagram of the Zhouyi",
+    authorZh: "Li Zhilong (Nanjing University)",
+    authorEn: "Li Zhilong (Nanjing University)",
+    abstractZh:
+      "The Qian and Kun hexagrams are the gateway of the Zhouyi, symbolizing the ruler and the subjects respectively. The Kun hexagram possesses ultimate value and does not subordinate itself to the Qian hexagram. The purport of using six in the Kun hexagram is faith in Heaven, which serves as the spiritual foundation for realizing individual freedom and equality among all people.",
+    abstractEn:
+      "The Qian and Kun hexagrams are the gateway of the Zhouyi, symbolizing the ruler and the subjects respectively. The Kun hexagram possesses ultimate value and does not subordinate itself to the Qian hexagram. The purport of using six in the Kun hexagram is faith in Heaven, which serves as the spiritual foundation for realizing individual freedom and equality among all people.",
+    issueLabelZh: "2027年第一卷",
+    issueLabelEn: "Volume 1 (2027)",
+    pdfUrl: "/papers/kun.pdf",
+    doiUrl: "",
+    publishedAt: "2027-01-03T00:00:00.000Z",
+    createdAt: "2027-01-03T00:00:00.000Z",
+    updatedAt: "2027-01-03T00:00:00.000Z",
+  },
+  {
+    slug: "kan-and-li",
+    categoryZh: "研究论文",
+    categoryEn: "Research Article",
+    titleZh: "The Shang-Zhou Stories in the Kan and Li Hexagrams of the Zhouyi (I Ching)",
+    titleEn: "The Shang-Zhou Stories in the Kan and Li Hexagrams of the Zhouyi (I Ching)",
+    authorZh: "Ban Kezhen (Tongji University)",
+    authorEn: "Ban Kezhen (Tongji University)",
+    abstractZh:
+      "This article analyzes the hexagram images and line statements of the Kan and Li hexagrams in the Zhouyi, combining them with historical events from the transition period between the Shang and Zhou dynasties, to reveal the humanistic connotations behind these two hexagrams. It argues that the Kan and Li hexagrams serve as metaphors for the power transition and cultural transformation between the Shang and Zhou dynasties.",
+    abstractEn:
+      "This article analyzes the hexagram images and line statements of the Kan and Li hexagrams in the Zhouyi, combining them with historical events from the transition period between the Shang and Zhou dynasties, to reveal the humanistic connotations behind these two hexagrams. It argues that the Kan and Li hexagrams serve as metaphors for the power transition and cultural transformation between the Shang and Zhou dynasties.",
+    issueLabelZh: "2027年第一卷",
+    issueLabelEn: "Volume 1 (2027)",
+    pdfUrl: "/papers/kan-and-li.pdf",
+    doiUrl: "",
+    publishedAt: "2027-01-02T00:00:00.000Z",
+    createdAt: "2027-01-02T00:00:00.000Z",
+    updatedAt: "2027-01-02T00:00:00.000Z",
+  },
+  {
+    slug: "song",
+    categoryZh: "研究论文",
+    categoryEn: "Research Article",
+    titleZh: "The Hexagram Song in the Book of Changes and Administrative Litigation",
+    titleEn: "The Hexagram Song in the Book of Changes and Administrative Litigation",
+    authorZh: "Wang Yulin (Fudan University)",
+    authorEn: "Wang Yulin (Fudan University)",
+    abstractZh:
+      "The Way of the Song hexagram applies not only to modern civil litigation but also to modern administrative litigation. The basic attitude of the Song hexagram toward administrative litigation is auspicious in the middle and ominous in the end. The Song hexagram offers practical insights for plaintiffs, defendants, and judges in administrative litigation.",
+    abstractEn:
+      "The Way of the Song hexagram applies not only to modern civil litigation but also to modern administrative litigation. The basic attitude of the Song hexagram toward administrative litigation is auspicious in the middle and ominous in the end. The Song hexagram offers practical insights for plaintiffs, defendants, and judges in administrative litigation.",
+    issueLabelZh: "2027年第一卷",
+    issueLabelEn: "Volume 1 (2027)",
+    pdfUrl: "/papers/song.pdf",
+    doiUrl: "",
+    publishedAt: "2027-01-01T00:00:00.000Z",
+    createdAt: "2027-01-01T00:00:00.000Z",
+    updatedAt: "2027-01-01T00:00:00.000Z",
+  },
+];
+
 const INDEX_KEY = "articles:index";
 const ARTICLE_PREFIX = "article:";
 const BLOCKED_PATHS = [
@@ -106,7 +231,7 @@ async function handleArticlesApi(
 }
 
 async function getArticleList(env: Env, url: URL): Promise<Response> {
-  const articles = await getArticleIndex(env);
+  const articles = await getMergedArticleIndex(env);
   const limitValue = Number(url.searchParams.get("limit") || "");
   const limit = Number.isFinite(limitValue) && limitValue > 0 ? limitValue : 12;
 
@@ -117,7 +242,11 @@ async function getArticleList(env: Env, url: URL): Promise<Response> {
 }
 
 async function getSingleArticle(env: Env, slug: string): Promise<Response> {
-  const article = await env.ICHING_KV.get(articleKey(slug), "json");
+  const stored = await env.ICHING_KV.get(articleKey(slug), "json");
+  const article =
+    stored && typeof stored === "object"
+      ? stored
+      : SEEDED_ARTICLES.find((item) => item.slug === slug);
 
   if (!article || typeof article !== "object") {
     return json({ error: "Article not found." }, 404);
@@ -213,6 +342,21 @@ async function getArticleIndex(env: Env): Promise<ArticleRecord[]> {
   return stored
     .filter((item): item is ArticleRecord => Boolean(item && typeof item === "object"))
     .sort(compareArticles);
+}
+
+async function getMergedArticleIndex(env: Env): Promise<ArticleRecord[]> {
+  const stored = await getArticleIndex(env);
+  const bySlug = new Map<string, ArticleRecord>();
+
+  for (const article of SEEDED_ARTICLES) {
+    bySlug.set(article.slug, article);
+  }
+
+  for (const article of stored) {
+    bySlug.set(article.slug, article);
+  }
+
+  return Array.from(bySlug.values()).sort(compareArticles);
 }
 
 function updateIndex(

@@ -930,6 +930,138 @@ svg {
   gap: 1rem;
 }
 
+.archive-directory-shell {
+  display: grid;
+  gap: 1rem;
+  margin-top: 2rem;
+}
+
+.archive-directory-head {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 1.6rem;
+}
+
+.archive-directory-title {
+  margin: 0.65rem 0 0;
+  color: var(--navy);
+  font-family: var(--font-serif);
+  font-size: clamp(2rem, 3vw, 2.8rem);
+  line-height: 0.96;
+}
+
+.archive-directory-copy {
+  max-width: 42rem;
+  margin: 0;
+  color: var(--muted);
+  font-size: 0.98rem;
+  line-height: 1.78;
+}
+
+.archive-directory {
+  display: grid;
+  gap: 1rem;
+}
+
+.archive-entry {
+  display: grid;
+  grid-template-columns: 4.8rem minmax(0, 1fr);
+  gap: 1.35rem;
+  padding: 1.6rem 1.7rem;
+  border: 1px solid var(--line);
+  background: linear-gradient(180deg, #ffffff 0%, #fbfcfd 100%);
+  box-shadow: var(--shadow-soft);
+}
+
+.archive-entry-empty {
+  grid-template-columns: minmax(0, 1fr);
+}
+
+.archive-entry-number {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 4.8rem;
+  min-height: 4.8rem;
+  border: 1px solid rgba(178, 139, 87, 0.22);
+  background: rgba(178, 139, 87, 0.1);
+  color: var(--accent-strong);
+  font-size: 1.18rem;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+
+.archive-entry-body {
+  display: grid;
+  gap: 0.95rem;
+  min-width: 0;
+}
+
+.archive-entry-head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.archive-entry-meta,
+.archive-entry-author,
+.archive-entry-date,
+.archive-entry-summary {
+  margin: 0;
+}
+
+.archive-entry-meta {
+  color: var(--accent-strong);
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.archive-entry-title {
+  margin: 0.45rem 0 0;
+  color: var(--navy);
+  font-family: var(--font-serif);
+  font-size: 1.85rem;
+  line-height: 1.02;
+}
+
+.archive-entry-author,
+.archive-entry-date {
+  color: var(--muted);
+  font-size: 0.98rem;
+  line-height: 1.65;
+}
+
+.archive-entry-author {
+  margin-top: 0.55rem;
+  font-weight: 600;
+}
+
+.archive-entry-date {
+  margin-top: 0.2rem;
+}
+
+.archive-entry-summary {
+  color: var(--ink);
+  line-height: 1.78;
+}
+
+.archive-entry-actions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  gap: 0.75rem;
+  min-width: 14rem;
+}
+
+.archive-status {
+  margin: 0;
+}
+
 .archive-year {
   display: inline-flex;
   align-items: center;
@@ -1051,10 +1183,33 @@ svg {
   }
 
   .section-head,
+  .archive-directory-head,
   .footer-grid,
   .form-foot {
     flex-direction: column;
     align-items: flex-start;
+  }
+
+  .archive-entry {
+    grid-template-columns: 1fr;
+  }
+
+  .archive-entry-number {
+    width: 4.2rem;
+    min-height: 3.2rem;
+  }
+
+  .archive-entry-head,
+  .archive-entry-actions {
+    min-width: 0;
+  }
+
+  .archive-entry-head {
+    flex-direction: column;
+  }
+
+  .archive-entry-actions {
+    justify-content: flex-start;
   }
 }
 
@@ -1181,10 +1336,10 @@ svg {
 .brand-title-fixed {
   margin: 0;
   color: #162536;
-  font-family: var(--font-serif);
+  font-family: "Kaiti SC", "STKaiti", "KaiTi", "BiauKai", serif;
   font-size: clamp(1.35rem, 1.7vw, 1.75rem);
-  font-weight: 700;
-  letter-spacing: 0.12em;
+  font-weight: 600;
+  letter-spacing: 0.08em;
 }
 
 .brand-subtitle {
