@@ -308,8 +308,8 @@
     meta.className = "archive-entry-meta";
     appendLangSpans(
       meta,
-      `${article.categoryZh || article.categoryEn || "研究论文"} · ${article.issueLabelZh || article.issueLabelEn || "2027年第一卷"}`,
-      `${article.categoryEn || article.categoryZh || "Research Article"} · ${article.issueLabelEn || article.issueLabelZh || "Volume 1 (2027)"}`,
+      `${article.categoryZh || article.categoryEn || "研究论文"} · ${article.issueLabelZh || article.issueLabelEn || "2026年第一卷"}`,
+      `${article.categoryEn || article.categoryZh || "Research Article"} · ${article.issueLabelEn || article.issueLabelZh || "Volume 1 (2026)"}`,
     );
 
     const title = document.createElement("h3");
@@ -353,8 +353,8 @@
         article.pdfUrl || "",
       ),
       createPillLink(
-        article.issueLabelZh || article.issueLabelEn || "2027年第一卷",
-        article.issueLabelEn || article.issueLabelZh || "Volume 1 (2027)",
+        article.issueLabelZh || article.issueLabelEn || "2026年第一卷",
+        article.issueLabelEn || article.issueLabelZh || "Volume 1 (2026)",
         "",
       ),
     );
@@ -388,6 +388,24 @@
     });
   }
 
+  function mergeArticles(preferredArticles, fallbackArticles) {
+    const merged = new Map();
+
+    fallbackArticles.forEach((article) => {
+      if (article && article.slug) {
+        merged.set(article.slug, article);
+      }
+    });
+
+    preferredArticles.forEach((article) => {
+      if (article && article.slug) {
+        merged.set(article.slug, article);
+      }
+    });
+
+    return Array.from(merged.values());
+  }
+
   async function requestArticleSource(url) {
     const response = await fetch(url, {
       headers: {
@@ -404,21 +422,29 @@
   }
 
   async function getArticleCollection() {
-    const sources = ["/api/articles?limit=12", "/articles.json"];
+    let apiArticles = [];
+    let staticArticles = [];
     let sawSuccess = false;
     let lastError = null;
 
-    for (const source of sources) {
-      try {
-        const articles = await requestArticleSource(source);
-        sawSuccess = true;
+    try {
+      apiArticles = await requestArticleSource("/api/articles?limit=12");
+      sawSuccess = true;
+    } catch (error) {
+      lastError = error;
+    }
 
-        if (articles.length) {
-          return sortArticles(articles);
-        }
-      } catch (error) {
-        lastError = error;
-      }
+    try {
+      staticArticles = await requestArticleSource("/articles.json");
+      sawSuccess = true;
+    } catch (error) {
+      lastError = error;
+    }
+
+    const mergedArticles = mergeArticles(staticArticles, apiArticles);
+
+    if (mergedArticles.length) {
+      return sortArticles(mergedArticles);
     }
 
     if (lastError && !sawSuccess) {
