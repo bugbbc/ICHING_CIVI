@@ -389,10 +389,16 @@
   }
 
   function mergeArticles(preferredArticles, fallbackArticles) {
+    const legacyReplacedSlugs = new Set([
+      "qian-shihe-and-zhongfu",
+      "song",
+      "kan-and-li",
+      "kun",
+    ]);
     const merged = new Map();
 
     fallbackArticles.forEach((article) => {
-      if (article && article.slug) {
+      if (article && article.slug && !legacyReplacedSlugs.has(article.slug)) {
         merged.set(article.slug, article);
       }
     });
