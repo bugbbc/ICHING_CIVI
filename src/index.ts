@@ -153,9 +153,9 @@ const SEEDED_ARTICLES: ArticleRecord[] = [
     issueLabelEn: "Volume 1 (2026)",
     pdfUrl: "/papers/leibniz-to-bouvet.pdf",
     doiUrl: "",
-    publishedAt: "2026-04-19T02:00:00.000Z",
-    createdAt: "2026-04-19T02:00:00.000Z",
-    updatedAt: "2026-04-19T02:00:00.000Z",
+    publishedAt: "2026-04-19T00:00:00.000Z",
+    createdAt: "2026-04-19T00:00:00.000Z",
+    updatedAt: "2026-04-19T00:00:00.000Z",
   },
   {
     slug: "kun-hexagram",
