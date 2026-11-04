@@ -7,6 +7,9 @@
     en: body.dataset.titleEn || document.title,
   };
   const articleGrid = document.querySelector(".js-article-grid");
+  const excludedArticleSlugs = new Set(
+    (articleGrid?.dataset.excludedSlugs || "").split(/\s+/).filter(Boolean),
+  );
   const articleStatus = document.querySelector("[data-article-status]");
   const archiveDirectory = document.querySelector(".js-archive-directory");
   const archiveStatus = document.querySelector("[data-archive-status]");
@@ -447,7 +450,9 @@
       lastError = error;
     }
 
-    const mergedArticles = mergeArticles(staticArticles, apiArticles);
+    const mergedArticles = mergeArticles(staticArticles, apiArticles).filter(
+      (article) => !excludedArticleSlugs.has(article.slug),
+    );
 
     if (mergedArticles.length) {
       return sortArticles(mergedArticles);
